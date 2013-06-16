@@ -147,9 +147,6 @@
     <Content Include="Content\js\bootswatch.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\js\bsa.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\js\jquery.smooth-scroll.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
