@@ -35,5 +35,4 @@ C:\Repositories\CMZeroWeb\CMZeroWeb\obj\Debug\CMZeroWeb.pdb
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Content\css\bootswatch.css
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Content\css\font-awesome.min.css
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Content\js\bootswatch.js
-C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Content\js\bsa.js
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Content\js\jquery.smooth-scroll.min.js
