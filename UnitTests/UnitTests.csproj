@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CMZero.API.Messages">
+      <HintPath>..\packages\ServiceAgentTemp\CMZero.API.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="CMZero.API.ServiceAgent">
+      <HintPath>..\packages\ServiceAgentTemp\CMZero.API.ServiceAgent.dll</HintPath>
+    </Reference>
     <Reference Include="NSubstitute">
       <HintPath>..\packages\NSubstitute.1.6.0.0\lib\NET40\NSubstitute.dll</HintPath>
     </Reference>
@@ -61,6 +67,10 @@
     <ProjectReference Include="..\CMZeroWeb\Web.csproj">
       <Project>{d00203a1-d953-421e-a046-95cf2004f9d9}</Project>
       <Name>Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{fe2a3635-e55a-4c2d-a87c-a9ddaf801ca6}</Project>
+      <Name>Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{3c6cb0c6-75a5-4737-8db6-2757fecad678}</Project>

@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CMZero.API.Messages">
+      <HintPath>..\packages\ServiceAgentTemp\CMZero.API.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="CMZero.API.ServiceAgent">
+      <HintPath>..\packages\ServiceAgentTemp\CMZero.API.ServiceAgent.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Labels\LabelCollectionRetriever.cs" />
+    <Compile Include="Labels\Mappers\ILabelCollectionMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{fe2a3635-e55a-4c2d-a87c-a9ddaf801ca6}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

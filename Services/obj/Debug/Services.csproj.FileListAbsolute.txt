@@ -1,5 +1,11 @@
-C:\Repositories\CMZeroWeb\Services\obj\Debug\Services.csprojResolveAssemblyReference.cache
 C:\Repositories\CMZeroWeb\Services\bin\Debug\CMZero.Web.Services.dll
 C:\Repositories\CMZeroWeb\Services\bin\Debug\CMZero.Web.Services.pdb
+C:\Repositories\CMZeroWeb\Services\bin\Debug\CMZero.API.Messages.dll
+C:\Repositories\CMZeroWeb\Services\bin\Debug\CMZero.API.ServiceAgent.dll
+C:\Repositories\CMZeroWeb\Services\bin\Debug\CMZero.Web.Models.dll
+C:\Repositories\CMZeroWeb\Services\bin\Debug\System.Net.Http.Formatting.dll
+C:\Repositories\CMZeroWeb\Services\bin\Debug\CMZero.Web.Models.pdb
+C:\Repositories\CMZeroWeb\Services\bin\Debug\System.Net.Http.Formatting.xml
+C:\Repositories\CMZeroWeb\Services\obj\Debug\Services.csprojResolveAssemblyReference.cache
 C:\Repositories\CMZeroWeb\Services\obj\Debug\CMZero.Web.Services.dll
 C:\Repositories\CMZeroWeb\Services\obj\Debug\CMZero.Web.Services.pdb

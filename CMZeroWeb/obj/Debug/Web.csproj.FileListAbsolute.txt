@@ -12,6 +12,9 @@ C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Content\js\bootswatch.js
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Content\js\jquery.smooth-scroll.min.js
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\CMZeroWeb.dll
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\CMZeroWeb.pdb
+C:\Repositories\CMZeroWeb\CMZeroWeb\bin\CMZero.API.Messages.dll
+C:\Repositories\CMZeroWeb\CMZeroWeb\bin\CMZero.API.ServiceAgent.dll
+C:\Repositories\CMZeroWeb\CMZeroWeb\bin\CMZero.Web.Services.dll
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Microsoft.Web.Infrastructure.dll
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Newtonsoft.Json.dll
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\System.Net.Http.Formatting.dll
@@ -23,6 +26,10 @@ C:\Repositories\CMZeroWeb\CMZeroWeb\bin\System.Web.Razor.dll
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\System.Web.WebPages.Deployment.dll
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\System.Web.WebPages.dll
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\System.Web.WebPages.Razor.dll
+C:\Repositories\CMZeroWeb\CMZeroWeb\bin\CMZero.Web.Models.dll
+C:\Repositories\CMZeroWeb\CMZeroWeb\bin\CMZero.Web.Services.pdb
+C:\Repositories\CMZeroWeb\CMZeroWeb\bin\CMZero.API.Messages.pdb
+C:\Repositories\CMZeroWeb\CMZeroWeb\bin\CMZero.API.ServiceAgent.pdb
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Newtonsoft.Json.xml
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\System.Net.Http.Formatting.xml
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\System.Web.Helpers.xml
@@ -33,6 +40,7 @@ C:\Repositories\CMZeroWeb\CMZeroWeb\bin\System.Web.Razor.xml
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\System.Web.WebPages.xml
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\System.Web.WebPages.Deployment.xml
 C:\Repositories\CMZeroWeb\CMZeroWeb\bin\System.Web.WebPages.Razor.xml
+C:\Repositories\CMZeroWeb\CMZeroWeb\bin\CMZero.Web.Models.pdb
 C:\Repositories\CMZeroWeb\CMZeroWeb\obj\Debug\Web.csprojResolveAssemblyReference.cache
 C:\Repositories\CMZeroWeb\CMZeroWeb\obj\Debug\CMZeroWeb.dll
 C:\Repositories\CMZeroWeb\CMZeroWeb\obj\Debug\CMZeroWeb.pdb

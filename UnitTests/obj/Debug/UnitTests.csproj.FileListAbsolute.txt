@@ -13,6 +13,9 @@ C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\Content\js\bootswatch.js
 C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\Content\js\jquery.smooth-scroll.min.js
 C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\CMZero.Web.UnitTests.dll
 C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\CMZero.Web.UnitTests.pdb
+C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\CMZero.API.Messages.dll
+C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\CMZero.API.ServiceAgent.dll
+C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\CMZero.Web.Models.dll
 C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\CMZero.Web.Services.dll
 C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\CMZeroWeb.dll
 C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\NSubstitute.dll
@@ -23,6 +26,7 @@ C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\System.Web.Http.WebHost.dll
 C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\System.Net.Http.Formatting.dll
 C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\Newtonsoft.Json.dll
 C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\CMZeroWeb.pdb
+C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\CMZero.Web.Models.pdb
 C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\CMZero.Web.Services.pdb
 C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\NSubstitute.xml
 C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\nunit.framework.xml
