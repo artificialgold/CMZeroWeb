@@ -46,7 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Labels\LabelCollectionRetriever.cs" />
+    <Compile Include="Labels\Mappers\ContentAreaMapper.cs" />
+    <Compile Include="Labels\Mappers\IContentAreaMapper.cs" />
     <Compile Include="Labels\Mappers\ILabelCollectionMapper.cs" />
+    <Compile Include="Labels\Mappers\LabelCollectionMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

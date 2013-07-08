@@ -7,6 +7,6 @@ namespace CMZero.Web.Services.Labels.Mappers
 {
     public interface ILabelCollectionMapper
     {
-        LabelCollection Map(List<ContentArea> contentAreas);
+        LabelCollection Map(IEnumerable<ContentArea> contentAreas);
     }
 }

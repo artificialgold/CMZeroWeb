@@ -43,12 +43,14 @@ namespace CMZero.Web.UnitTests.Services.Labels
 
             private readonly LabelCollection mappedValueFromServiceAgent = new LabelCollection();
 
+            private List<ContentArea> contentAreas;
+
             [SetUp]
             public new virtual void SetUp()
             {
-
-                LabelCollectionMapper.Map(new List<ContentArea>()).Returns(mappedValueFromServiceAgent);
-                ContentAreasServiceAgent.GetByCollection(CollectionId).Returns(new List<ContentArea>());
+                contentAreas = new List<ContentArea>();
+                ContentAreasServiceAgent.GetByCollection(CollectionId).Returns(contentAreas);
+                LabelCollectionMapper.Map(contentAreas).Returns(mappedValueFromServiceAgent);
                 result = LabelCollectionRetriever.Get(CollectionId);
             }
 

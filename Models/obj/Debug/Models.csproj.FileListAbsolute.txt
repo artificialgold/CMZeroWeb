@@ -2,3 +2,5 @@ C:\Repositories\CMZeroWeb\Models\bin\Debug\CMZero.Web.Models.dll
 C:\Repositories\CMZeroWeb\Models\bin\Debug\CMZero.Web.Models.pdb
 C:\Repositories\CMZeroWeb\Models\obj\Debug\CMZero.Web.Models.dll
 C:\Repositories\CMZeroWeb\Models\obj\Debug\CMZero.Web.Models.pdb
+C:\Repositories\CMZeroWeb\Models\bin\Debug\CMZero.API.Messages.dll
+C:\Repositories\CMZeroWeb\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
