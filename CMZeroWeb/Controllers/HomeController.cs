@@ -1,5 +1,10 @@
-﻿
+﻿using System.Configuration;
 using System.Web.Mvc;
+
+using CMZero.API.ServiceAgent;
+using CMZero.Web.Models.ViewModels;
+using CMZero.Web.Services.Labels;
+using CMZero.Web.Services.Labels.Mappers;
 
 namespace CMZeroWeb.Controllers
 {
@@ -7,7 +12,16 @@ namespace CMZeroWeb.Controllers
     {
         public ViewResult Index()
         {
-            return View();
+            const string CollectionId = "821242ab-86ea-4253-b6fd-7d7caf5ddc70";
+
+            var labelCollectionRetriever = new LabelCollectionRetriever(new LabelCollectionMapper(new ContentAreaMapper()), new ContentAreasServiceAgent(ConfigurationManager.AppSettings["BaseUri"]) );
+
+            var labelCollection = labelCollectionRetriever.Get(CollectionId);
+
+            return View(new HomeViewModel
+            {
+                Labels = labelCollection
+            });
         }
     }
 }

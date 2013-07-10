@@ -44,3 +44,7 @@ C:\Repositories\CMZeroWeb\CMZeroWeb\bin\CMZero.Web.Models.pdb
 C:\Repositories\CMZeroWeb\CMZeroWeb\obj\Debug\Web.csprojResolveAssemblyReference.cache
 C:\Repositories\CMZeroWeb\CMZeroWeb\obj\Debug\CMZeroWeb.dll
 C:\Repositories\CMZeroWeb\CMZeroWeb\obj\Debug\CMZeroWeb.pdb
+C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Castle.Core.dll
+C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Castle.Windsor.dll
+C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Castle.Core.xml
+C:\Repositories\CMZeroWeb\CMZeroWeb\bin\Castle.Windsor.xml

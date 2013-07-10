@@ -1,7 +1,9 @@
-﻿@model dynamic
+﻿@model CMZero.Web.Models.ViewModels.HomeViewModel
 
 @{
     ViewBag.Title = "CMZero - Small chunk Content Management";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h1>Content management for small labels</h1>
+
+@Model.GetLabel("MainBody")

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{FE2A3635-E55A-4C2D-A87C-A9DDAF801CA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentAreaCreationApp", "ContentAreaCreationApp\ContentAreaCreationApp.csproj", "{3674C08B-1E4C-41B5-A638-468D21EEC39D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{FE2A3635-E55A-4C2D-A87C-A9DDAF801CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE2A3635-E55A-4C2D-A87C-A9DDAF801CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE2A3635-E55A-4C2D-A87C-A9DDAF801CA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3674C08B-1E4C-41B5-A638-468D21EEC39D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3674C08B-1E4C-41B5-A638-468D21EEC39D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3674C08B-1E4C-41B5-A638-468D21EEC39D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3674C08B-1E4C-41B5-A638-468D21EEC39D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

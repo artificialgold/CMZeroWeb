@@ -37,3 +37,7 @@ C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\System.Net.Http.Formatting.xml
 C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\Newtonsoft.Json.xml
 C:\Repositories\CMZeroWeb\UnitTests\obj\Debug\CMZero.Web.UnitTests.dll
 C:\Repositories\CMZeroWeb\UnitTests\obj\Debug\CMZero.Web.UnitTests.pdb
+C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\Castle.Windsor.dll
+C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\Castle.Core.dll
+C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\Castle.Windsor.xml
+C:\Repositories\CMZeroWeb\UnitTests\bin\Debug\Castle.Core.xml

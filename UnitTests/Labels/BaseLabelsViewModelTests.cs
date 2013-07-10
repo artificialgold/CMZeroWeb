@@ -13,12 +13,12 @@ namespace CMZero.Web.UnitTests.Labels
     {
         public class Given_a_BaseLabelsViewModel
         {
-            protected BaseLabelsViewModel _baseLabelsViewModel;
+            protected BaseLabelsViewModel BaseLabelsViewModel;
 
             [SetUp]
             public virtual void SetUp()
             {
-                _baseLabelsViewModel = new BaseLabelsViewModel();
+                BaseLabelsViewModel = new BaseLabelsViewModel();
             }
         }
 
@@ -26,23 +26,23 @@ namespace CMZero.Web.UnitTests.Labels
         {
             private string _labelnamethatexists;
 
-            private string content = "content";
+            private const string Content = "content";
 
-            private string result;
+            private string _result;
 
             [SetUp]
-            public virtual void SetUp()
+            public new virtual void SetUp()
             {
                 base.SetUp();
                 _labelnamethatexists = "LabelNameThatExists";
-                _baseLabelsViewModel.Labels = new LabelCollection { ContentAreas = new List<ContentAreaForDisplay> { new ContentAreaForDisplay { Name = _labelnamethatexists, Content = content } } };
-                result = _baseLabelsViewModel.GetLabel(_labelnamethatexists);
+                BaseLabelsViewModel.Labels = new LabelCollection { ContentAreas = new List<ContentAreaForDisplay> { new ContentAreaForDisplay { Name = _labelnamethatexists, Content = Content } } };
+                _result = BaseLabelsViewModel.GetLabel(_labelnamethatexists);
             }
 
             [Test]
             public void it_should_return_the_content_from_the_collection()
             {
-                result.ShouldBe(content);
+                _result.ShouldBe(Content);
             }
         }
 
@@ -53,11 +53,11 @@ namespace CMZero.Web.UnitTests.Labels
             private string result;
 
             [SetUp]
-            public virtual void SetUp()
+            public new virtual void SetUp()
             {
                 base.SetUp();
-                _baseLabelsViewModel.Labels = new LabelCollection();
-                result = _baseLabelsViewModel.GetLabel(_labelNameThatDoesNotExist);
+                BaseLabelsViewModel.Labels = new LabelCollection();
+                result = BaseLabelsViewModel.GetLabel(_labelNameThatDoesNotExist);
             }
 
             [Test]

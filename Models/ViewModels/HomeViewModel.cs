@@ -1,7 +1,6 @@
 ﻿namespace CMZero.Web.Models.ViewModels
 {
-    public class HomeViewModel
+    public class HomeViewModel : BaseLabelsViewModel
     {
-        public LabelCollection LabelCollection { get; set; }
     }
 }
