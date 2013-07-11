@@ -14,9 +14,9 @@ namespace CMZeroWeb.Controllers
         {
             const string CollectionId = "821242ab-86ea-4253-b6fd-7d7caf5ddc70";
 
-            var labelCollectionRetriever = new LabelCollectionRetriever(new LabelCollectionMapper(new ContentAreaMapper()), new ContentAreasServiceAgent(ConfigurationManager.AppSettings["BaseUri"]) );
+            var labelCollectionRetriever = new LabelCollectionRetriever(new LabelCollectionMapper(new ContentAreaMapper()), new ContentAreasServiceAgent(ConfigurationManager.AppSettings["BaseUri"]));
 
-            var labelCollection = labelCollectionRetriever.Get(CollectionId);
+            var labelCollection = labelCollectionRetriever.Get(ConfigurationManager.AppSettings[""]);
 
             return View(new HomeViewModel
             {

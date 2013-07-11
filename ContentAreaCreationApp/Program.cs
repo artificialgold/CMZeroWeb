@@ -19,7 +19,7 @@ namespace ContentAreaCreationApp
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Create Application");
+            Console.WriteLine("Checking for existence of data and/or creating new");
 
             var organisation = GetOrganisation();
 
@@ -39,7 +39,7 @@ namespace ContentAreaCreationApp
             Console.WriteLine("CollectionId = " + collection.Id);
 
             Console.WriteLine();
-            Console.WriteLine("press any key to continue");
+            Console.WriteLine("press Enter to continue");
             Console.ReadLine();
         }
 
@@ -75,6 +75,8 @@ namespace ContentAreaCreationApp
             try
             {
                 collection = _collectionServiceAgent.Get(ConfigurationManager.AppSettings["CollectionIdToTryToUse"]);
+                Console.WriteLine("Collection with that Id does exist");
+                Console.WriteLine();
             }
             catch
             {
@@ -88,6 +90,7 @@ namespace ContentAreaCreationApp
                                 OrganisationId = organisation.Id
                             });
                 Console.WriteLine("CREATED NEW COLLECTION FOR HOME PAGE : ID = " + collection.Id);
+                Console.WriteLine();
             }
 
             if (collection == null)
@@ -104,6 +107,7 @@ namespace ContentAreaCreationApp
             try
             {
                 application = _applicationsServiceAgent.Get(ConfigurationManager.AppSettings["ApplicationIdToTryToUse"]);
+                Console.WriteLine("Application with that ID does exist");
             }
             catch
             {
@@ -111,6 +115,7 @@ namespace ContentAreaCreationApp
                     _applicationsServiceAgent.Post(
                         new Application { Active = true, Name = "CMZero Website", OrganisationId = organisation.Id });
                 Console.Write("APPLICATION WAS CREATED: ID = " + application.Id);
+                Console.WriteLine();
             }
             if (application == null)
             {
@@ -127,11 +132,14 @@ namespace ContentAreaCreationApp
             try
             {
                 organisation = _organisationsServiceAgent.Get(ConfigurationManager.AppSettings["OrganisationIdToTryToUse"]);
+                Console.WriteLine("Organisation with that ID does exist");
+                Console.WriteLine();
             }
             catch (Exception)
             {
                 organisation = _organisationsServiceAgent.Post(new Organisation { Active = true, Name = "CMZero2" });
                 Console.WriteLine("NEW ORGANISATIONID IS " + organisation.Id);
+                Console.WriteLine();
             }
 
             if (organisation == null)
