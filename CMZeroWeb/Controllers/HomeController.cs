@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 
 using CMZero.API.ServiceAgent;
+using CMZero.Web.Models;
 using CMZero.Web.Models.ViewModels;
 using CMZero.Web.Services.Labels;
 using CMZero.Web.Services.Labels.Mappers;
@@ -19,9 +20,10 @@ namespace CMZeroWeb.Controllers
 
         public ViewResult Index()
         {
+            //NEED TO WIRE IN THE CONTROLLERS TO USE IOC
             const string CollectionName = "Home Page";
 
-            var labelCollection = _labelCollectionRetriever.Get(CollectionName);
+            LabelCollection labelCollection = _labelCollectionRetriever.Get(CollectionName);
 
             return View(new HomeViewModel { Labels = labelCollection });
         }
