@@ -3,6 +3,7 @@
 using CMZero.API.Messages;
 using CMZero.API.ServiceAgent;
 using CMZero.Web.Models;
+using CMZero.Web.Services;
 using CMZero.Web.Services.Labels;
 using CMZero.Web.Services.Labels.Mappers;
 
@@ -25,33 +26,38 @@ namespace CMZero.Web.UnitTests.Services.Labels
 
             protected IContentAreasServiceAgent ContentAreasServiceAgent;
 
+            protected ISystemSettings SystemSettings;
+
             [SetUp]
             public virtual void SetUp()
             {
                 LabelCollectionMapper = Substitute.For<ILabelCollectionMapper>();
                 ContentAreasServiceAgent = Substitute.For<IContentAreasServiceAgent>();
-                LabelCollectionRetriever = new LabelCollectionRetriever(LabelCollectionMapper, ContentAreasServiceAgent);
+                SystemSettings = Substitute.For<ISystemSettings>();
+                LabelCollectionRetriever = new LabelCollectionRetriever(LabelCollectionMapper, ContentAreasServiceAgent, SystemSettings);
             }
         }
 
         [TestFixture]
-        public class When_I_get_a_collection_by_valid_name_and_application : Given_a_LabelCollectionRetriever
+        public class When_I_get_a_collection_by_valid_name_and_apiKey : Given_a_LabelCollectionRetriever
         {
-            private const string CollectionId = "test";
+            private const string CollectionName = "test";
 
             private LabelCollection result;
 
             private readonly LabelCollection mappedValueFromServiceAgent = new LabelCollection();
 
-            private List<ContentArea> contentAreas;
+            private List<ContentArea> contentAreas = new List<ContentArea>();
+
+            private const string ApiKey = "apiKey";
 
             [SetUp]
             public new virtual void SetUp()
             {
-                contentAreas = new List<ContentArea>();
-                ContentAreasServiceAgent.GetByCollection(CollectionId).Returns(contentAreas);
+                SystemSettings.ApiKey.Returns(ApiKey);
+                ContentAreasServiceAgent.GetByCollectionNameAndApiKey(ApiKey, CollectionName).Returns(contentAreas);
                 LabelCollectionMapper.Map(contentAreas).Returns(mappedValueFromServiceAgent);
-                result = LabelCollectionRetriever.Get(CollectionId);
+                result = LabelCollectionRetriever.Get(CollectionName);
             }
 
             [Test]

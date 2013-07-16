@@ -4,21 +4,26 @@ using CMZero.Web.Services.Labels.Mappers;
 
 namespace CMZero.Web.Services.Labels
 {
-    public class LabelCollectionRetriever
+    public class LabelCollectionRetriever : ILabelCollectionRetriever
     {
-        private readonly ILabelCollectionMapper labelCollectionMapper;
+        private readonly ILabelCollectionMapper _labelCollectionMapper;
 
-        private readonly IContentAreasServiceAgent contentAreasServiceAgent;
+        private readonly IContentAreasServiceAgent _contentAreasServiceAgent;
 
-        public LabelCollectionRetriever(ILabelCollectionMapper labelCollectionMapper, IContentAreasServiceAgent contentAreasServiceAgent)
+        private readonly ISystemSettings _systemSettings;
+
+        public LabelCollectionRetriever(ILabelCollectionMapper labelCollectionMapper, IContentAreasServiceAgent contentAreasServiceAgent, ISystemSettings systemSettings)
         {
-            this.labelCollectionMapper = labelCollectionMapper;
-            this.contentAreasServiceAgent = contentAreasServiceAgent;
+            _labelCollectionMapper = labelCollectionMapper;
+            _contentAreasServiceAgent = contentAreasServiceAgent;
+            _systemSettings = systemSettings;
         }
 
-        public LabelCollection Get(string collectionId)
+        public LabelCollection Get(string collectionName)
         {
-            return labelCollectionMapper.Map(contentAreasServiceAgent.GetByCollection(collectionId));
+            var apiKey = _systemSettings.ApiKey;
+
+            return _labelCollectionMapper.Map(_contentAreasServiceAgent.GetByCollectionNameAndApiKey(apiKey, collectionName));
         }
     }
 }

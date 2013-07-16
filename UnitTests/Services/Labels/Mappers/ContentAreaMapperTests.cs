@@ -36,7 +36,7 @@ namespace CMZero.Web.UnitTests.Services.Labels.Mappers
             private ContentAreaForDisplay result;
 
             [SetUp]
-            public virtual void SetUp()
+            public new virtual void SetUp()
             {
                 base.SetUp();
                 result = ContentAreaMapper.Map(contentArea);

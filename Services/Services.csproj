@@ -37,6 +37,7 @@
       <HintPath>..\packages\ServiceAgentTemp\CMZero.API.ServiceAgent.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,12 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISystemSettings.cs" />
+    <Compile Include="Labels\ILabelCollectionRetriever.cs" />
     <Compile Include="Labels\LabelCollectionRetriever.cs" />
     <Compile Include="Labels\Mappers\ContentAreaMapper.cs" />
     <Compile Include="Labels\Mappers\IContentAreaMapper.cs" />
     <Compile Include="Labels\Mappers\ILabelCollectionMapper.cs" />
     <Compile Include="Labels\Mappers\LabelCollectionMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

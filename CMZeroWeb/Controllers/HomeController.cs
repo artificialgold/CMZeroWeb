@@ -10,18 +10,20 @@ namespace CMZeroWeb.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ILabelCollectionRetriever _labelCollectionRetriever;
+
+        public HomeController(ILabelCollectionRetriever labelCollectionRetriever)
+        {
+            _labelCollectionRetriever = labelCollectionRetriever;
+        }
+
         public ViewResult Index()
         {
-            const string CollectionId = "821242ab-86ea-4253-b6fd-7d7caf5ddc70";
+            const string CollectionName = "Home Page";
 
-            var labelCollectionRetriever = new LabelCollectionRetriever(new LabelCollectionMapper(new ContentAreaMapper()), new ContentAreasServiceAgent(ConfigurationManager.AppSettings["BaseUri"]));
+            var labelCollection = _labelCollectionRetriever.Get(CollectionName);
 
-            var labelCollection = labelCollectionRetriever.Get(ConfigurationManager.AppSettings[""]);
-
-            return View(new HomeViewModel
-            {
-                Labels = labelCollection
-            });
+            return View(new HomeViewModel { Labels = labelCollection });
         }
     }
 }

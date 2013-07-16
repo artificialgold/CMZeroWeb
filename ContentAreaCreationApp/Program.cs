@@ -10,12 +10,12 @@ namespace ContentAreaCreationApp
 {
     class Program
     {
-        private static string baseUri = ConfigurationManager.AppSettings["BaseUri"];
+        private static readonly string BaseUri = ConfigurationManager.AppSettings["BaseUri"];
 
-        static IContentAreasServiceAgent _contentAreasServiceAgent = new ContentAreasServiceAgent(baseUri);
-        static IOrganisationsServiceAgent _organisationsServiceAgent = new OrganisationsServiceAgent(baseUri);
-        static IApplicationsServiceAgent _applicationsServiceAgent = new ApplicationsServiceAgent(baseUri);
-        static ICollectionServiceAgent _collectionServiceAgent = new CollectionsServiceAgent(baseUri);
+        static readonly IContentAreasServiceAgent ContentAreasServiceAgent = new ContentAreasServiceAgent(BaseUri);
+        static readonly IOrganisationsServiceAgent OrganisationsServiceAgent = new OrganisationsServiceAgent(BaseUri);
+        static readonly IApplicationsServiceAgent ApplicationsServiceAgent = new ApplicationsServiceAgent(BaseUri);
+        static readonly ICollectionServiceAgent CollectionServiceAgent = new CollectionsServiceAgent(BaseUri);
 
         static void Main(string[] args)
         {
@@ -27,7 +27,7 @@ namespace ContentAreaCreationApp
 
             var collection = GetCollection(application, organisation);
 
-            var areasAlreadyCreated = _contentAreasServiceAgent.GetByCollection(collection.Id);
+            var areasAlreadyCreated = ContentAreasServiceAgent.GetByCollection(collection.Id);
             foreach (var contentArea in areasAlreadyCreated)
             {
                 Console.WriteLine("found area : " + contentArea.Name);
@@ -54,7 +54,7 @@ namespace ContentAreaCreationApp
 
             if (!exists)
             {
-                _contentAreasServiceAgent.Post(
+                ContentAreasServiceAgent.Post(
                     new ContentArea
                         {
                             Active = true,
@@ -74,14 +74,14 @@ namespace ContentAreaCreationApp
             Collection collection;
             try
             {
-                collection = _collectionServiceAgent.Get(ConfigurationManager.AppSettings["CollectionIdToTryToUse"]);
+                collection = CollectionServiceAgent.Get(ConfigurationManager.AppSettings["CollectionIdToTryToUse"]);
                 Console.WriteLine("Collection with that Id does exist");
                 Console.WriteLine();
             }
             catch
             {
                 collection =
-                    _collectionServiceAgent.Post(
+                    CollectionServiceAgent.Post(
                         new Collection
                             {
                                 Active = true,
@@ -97,6 +97,7 @@ namespace ContentAreaCreationApp
             {
                 Console.WriteLine("ERROR CREATING COLLECTION, process aborted");
                 Console.ReadLine();
+                return null;
             }
             return collection;
         }
@@ -106,22 +107,23 @@ namespace ContentAreaCreationApp
             Application application;
             try
             {
-                application = _applicationsServiceAgent.Get(ConfigurationManager.AppSettings["ApplicationIdToTryToUse"]);
+                application = ApplicationsServiceAgent.Get(ConfigurationManager.AppSettings["ApplicationIdToTryToUse"]);
                 Console.WriteLine("Application with that ID does exist");
             }
             catch
             {
                 application =
-                    _applicationsServiceAgent.Post(
+                    ApplicationsServiceAgent.Post(
                         new Application { Active = true, Name = "CMZero Website", OrganisationId = organisation.Id });
-                Console.Write("APPLICATION WAS CREATED: ID = " + application.Id);
+                Console.WriteLine("APPLICATION WAS CREATED: ID = " + application.Id);
+                Console.WriteLine("APIKEY = " + application.ApiKey);
                 Console.WriteLine();
             }
             if (application == null)
             {
                 Console.WriteLine("ERROR CREATING APPLICATION, process aborted");
                 Console.ReadLine();
-                return application;
+                return null;
             }
             return application;
         }
@@ -131,13 +133,13 @@ namespace ContentAreaCreationApp
             Organisation organisation;
             try
             {
-                organisation = _organisationsServiceAgent.Get(ConfigurationManager.AppSettings["OrganisationIdToTryToUse"]);
+                organisation = OrganisationsServiceAgent.Get(ConfigurationManager.AppSettings["OrganisationIdToTryToUse"]);
                 Console.WriteLine("Organisation with that ID does exist");
                 Console.WriteLine();
             }
             catch (Exception)
             {
-                organisation = _organisationsServiceAgent.Post(new Organisation { Active = true, Name = "CMZero2" });
+                organisation = OrganisationsServiceAgent.Post(new Organisation { Active = true, Name = "CMZero2" });
                 Console.WriteLine("NEW ORGANISATIONID IS " + organisation.Id);
                 Console.WriteLine();
             }
@@ -146,7 +148,7 @@ namespace ContentAreaCreationApp
             {
                 Console.WriteLine("ERROR CREATING ORGANISATION, process aborted");
                 Console.ReadLine();
-                return organisation;
+                return null;
             }
             return organisation;
         }
