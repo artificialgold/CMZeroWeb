@@ -34,8 +34,8 @@ namespace ContentAreaCreationApp
             }
 
             CreateContentArea(application, collection, "MainBody", "HelloWorldFromScript", areasAlreadyCreated);
-CreateContentArea(application, collection, "PageTitle", "CMZero - Small chunk content management system", areasAlreadyCreated);
-CreateContentArea(application, collection, "MainH1", "Content management for smaller chunks", areasAlreadyCreated);
+            CreateContentArea(application, collection, "PageTitle", "CMZero - Small chunk content management system", areasAlreadyCreated);
+            CreateContentArea(application, collection, "MainH1", "Content management for smaller chunks", areasAlreadyCreated);
 
 
             Console.WriteLine("CollectionId = " + collection.Id);

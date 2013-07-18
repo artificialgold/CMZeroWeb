@@ -17,6 +17,8 @@ namespace CMZeroWeb
     {
         protected void Application_Start()
         {
+            Bootstrapper.Init(Assembly.GetExecutingAssembly());
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
