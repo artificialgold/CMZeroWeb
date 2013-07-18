@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\StyleGuideController.cs" />
     <Compile Include="Controllers\WindsorInstaller.cs" />
     <Compile Include="Global.asax.cs">
@@ -202,6 +203,9 @@
       <Project>{3c6cb0c6-75a5-4737-8db6-2757fecad678}</Project>
       <Name>Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Layout\_NavBar.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
