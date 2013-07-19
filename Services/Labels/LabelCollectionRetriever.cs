@@ -23,6 +23,8 @@ namespace CMZero.Web.Services.Labels
         {
             var apiKey = _systemSettings.ApiKey;
 
+            //Implement Caching of at least this and possibly more
+
             return _labelCollectionMapper.Map(_contentAreasServiceAgent.GetByCollectionNameAndApiKey(apiKey, collectionName));
         }
     }

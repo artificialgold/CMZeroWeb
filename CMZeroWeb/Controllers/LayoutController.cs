@@ -12,5 +12,14 @@ namespace CMZeroWeb.Controllers
             return PartialView("_NavBar");
         }
 
+        public PartialViewResult MastHead()
+        {
+            return PartialView("_MastHead");
+        }
+
+        public PartialViewResult Footer()
+        {
+            return PartialView("_Footer");
+        }
     }
 }
