@@ -25,39 +25,36 @@ namespace ContentAreaCreationApp
 
             var application = GetApplication(organisation);
 
-            //TODO: Figure out how to stop this step. We need to create the collection if it does not exist but 
-            var collectionHomePage = GetHomePageCollection(application, organisation);
+            IEnumerable<Collection> collectionsAlreadyExisting = CollectionServiceAgent.GetByApiKey(application.ApiKey);
 
-            CreateHomePageCollection(application, collectionHomePage);
-            CreateNavBarCollection(application, );
+            GetHomePageContentAreas(application, collectionsAlreadyExisting);
 
             Console.WriteLine();
             Console.WriteLine("press Enter to continue");
             Console.ReadLine();
         }
 
-        private static void CreateHomePageCollection(Application application, Collection collection)
+        private static void GetHomePageContentAreas(Application application, IEnumerable<Collection> collectionsAlreadyExisting)
         {
-            var areasAlreadyCreated = AreasAlreadyCreated(application.ApiKey, "Home Page");
+            Dictionary<string, string> contentRequired = new Dictionary<string, string>
+                {
+                    {"MainBody", "HelloWorldFromScript"},
+                    {"PageTitle", "CMZero - Small chunk content management system"},
+                    {"MainH1", "Content management for smaller chunks"}
+                };
 
-            CreateContentArea(application.Id, collection.Id, "MainBody", "HelloWorldFromScript",
-                              areasAlreadyCreated);
-            CreateContentArea(application.Id, collection.Id, "PageTitle",
-                              "CMZero - Small chunk content management system", areasAlreadyCreated);
-            CreateContentArea(application.Id, collection.Id, "MainH1", "Content management for smaller chunks",
-                              areasAlreadyCreated);
+            CreateCollectionAndContentAreas(application, "Home Page", contentRequired, collectionsAlreadyExisting);
         }
 
-        private static void CreateNavBarCollection(Application application, Collection collection)
+        private static void CreateCollectionAndContentAreas(Application application, string collectionName, Dictionary<string, string> contentRequired, IEnumerable<Collection> collections)
         {
-            var areasAlreadyCreated = AreasAlreadyCreated(application.ApiKey, "Home Page");
+            var collection = CreateCollection(collectionName, application, collections);
+            var areasAlreadyCreated = AreasAlreadyCreated(application.ApiKey, collectionName);
 
-            CreateContentArea(application.Id, collection.Id, "MainBody", "HelloWorldFromScript",
-                              areasAlreadyCreated);
-            CreateContentArea(application.Id, collection.Id, "PageTitle",
-                              "CMZero - Small chunk content management system", areasAlreadyCreated);
-            CreateContentArea(application.Id, collection.Id, "MainH1", "Content management for smaller chunks",
-                              areasAlreadyCreated);
+            foreach (var content in contentRequired)
+            {
+                CreateContentArea(application.Id, collection.Id, content.Key, content.Value, areasAlreadyCreated);
+            }
         }
 
         private static IEnumerable<ContentArea> AreasAlreadyCreated(string apiKey, string collectionName)
@@ -94,16 +91,23 @@ namespace ContentAreaCreationApp
             }
         }
 
-        private static Collection GetHomePageCollection(Application application, Organisation organisation)
+        private static Collection CreateCollection(string name, Application application, IEnumerable<Collection> collections)
         {
             Collection collection;
-            try
+
+            bool exists = (from c in collections
+                           where c.Name == name
+                           select c).Any();
+
+            if (exists)
             {
-                collection = CollectionServiceAgent.Get(ConfigurationManager.AppSettings["CollectionIdToTryToUse"]);
+                collection = (from c in collections
+                              where c.Name == name
+                              select c).First();
                 Console.WriteLine("Collection with that Id does exist");
                 Console.WriteLine();
             }
-            catch
+            else
             {
                 collection =
                     CollectionServiceAgent.Post(
@@ -111,10 +115,10 @@ namespace ContentAreaCreationApp
                             {
                                 Active = true,
                                 ApplicationId = application.Id,
-                                Name = "Home Page",
-                                OrganisationId = organisation.Id
+                                Name = name,
+                                OrganisationId = application.OrganisationId
                             });
-                Console.WriteLine("CREATED NEW COLLECTION FOR HOME PAGE : ID = " + collection.Id);
+                Console.WriteLine("CREATED NEW COLLECTION WITH NAME: " + name);
                 Console.WriteLine();
             }
 
@@ -124,6 +128,7 @@ namespace ContentAreaCreationApp
                 Console.ReadLine();
                 return null;
             }
+
             return collection;
         }
 
