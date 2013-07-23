@@ -1,0 +1,14 @@
+﻿[
+        {
+            "Name": "MainBody",
+            "Content": "HelloWorldFromScript"
+        },
+        {
+            "Name": "PageTitle",
+            "Content": "CMZero - Small chunk content management system"
+        },
+		{
+			"Name" : "MainH1",
+			"Content" : "Content management for smaller chunks"
+		}
+]

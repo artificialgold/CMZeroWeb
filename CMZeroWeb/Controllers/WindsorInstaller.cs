@@ -15,7 +15,7 @@ namespace CMZeroWeb.Controllers
         {
             container.Register(Component.For<HomeController>().ImplementedBy<HomeController>().LifeStyle.Transient);
             container.Register(Component.For<StyleGuideController>().ImplementedBy<StyleGuideController>().LifeStyle.Transient);
-
+            container.Register(Component.For<LayoutController>().ImplementedBy<LayoutController>().LifeStyle.Transient);
 
         }
     }

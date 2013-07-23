@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 
 using CMZero.API.Messages;
 using CMZero.API.ServiceAgent;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ContentAreaCreationApp
 {
@@ -27,23 +30,30 @@ namespace ContentAreaCreationApp
 
             IEnumerable<Collection> collectionsAlreadyExisting = CollectionServiceAgent.GetByApiKey(application.ApiKey);
 
-            GetHomePageContentAreas(application, collectionsAlreadyExisting);
+            GetContentAreas("Home Page", application, collectionsAlreadyExisting);
+            GetContentAreas("NavBar", application, collectionsAlreadyExisting);
 
             Console.WriteLine();
             Console.WriteLine("press Enter to continue");
             Console.ReadLine();
         }
 
-        private static void GetHomePageContentAreas(Application application, IEnumerable<Collection> collectionsAlreadyExisting)
+        private static void GetContentAreas(string collectionName, Application application, IEnumerable<Collection> collectionsAlreadyExisting)
         {
-            Dictionary<string, string> contentRequired = new Dictionary<string, string>
-                {
-                    {"MainBody", "HelloWorldFromScript"},
-                    {"PageTitle", "CMZero - Small chunk content management system"},
-                    {"MainH1", "Content management for smaller chunks"}
-                };
+            var stream = File.OpenText(string.Format("../../Collections/{0}.json", collectionName));
+            JsonTextReader reader = new JsonTextReader(stream);
 
-            CreateCollectionAndContentAreas(application, "Home Page", contentRequired, collectionsAlreadyExisting);
+            Dictionary<string, string> contentRequired = new Dictionary<string, string>();
+
+            Console.WriteLine("Read content from json file for Collection : {0}", collectionName);
+            JArray root = JArray.Load(reader);
+            foreach (JObject o in root)
+            {
+                contentRequired.Add(o["Name"].ToString(), o["Content"].ToString());
+                Console.WriteLine("{0} : {1}", o["Name"], o["Content"]);
+            }
+
+            CreateCollectionAndContentAreas(application, collectionName, contentRequired, collectionsAlreadyExisting);
         }
 
         private static void CreateCollectionAndContentAreas(Application application, string collectionName, Dictionary<string, string> contentRequired, IEnumerable<Collection> collections)
@@ -134,53 +144,18 @@ namespace ContentAreaCreationApp
 
         private static Application GetApplication(Organisation organisation)
         {
-            Application application;
-            try
-            {
-                application = ApplicationsServiceAgent.Get(ConfigurationManager.AppSettings["ApplicationIdToTryToUse"]);
-                Console.WriteLine("Application with that ID does exist");
-            }
-            catch
-            {
-                application =
-                    ApplicationsServiceAgent.Post(
-                        new Application { Active = true, Name = "CMZero Website", OrganisationId = organisation.Id });
-                Console.WriteLine("APPLICATION WAS CREATED: ID = " + application.Id);
-                Console.WriteLine("APIKEY = " + application.ApiKey);
-                Console.WriteLine();
-            }
-            if (application == null)
-            {
-                Console.WriteLine("ERROR CREATING APPLICATION, process aborted");
-                Console.ReadLine();
-                return null;
-            }
-            return application;
+            return new ApplicationGetter(ApplicationsServiceAgent).GetApplication(organisation);
         }
 
         private static Organisation GetOrganisation()
         {
-            Organisation organisation;
-            try
-            {
-                organisation = OrganisationsServiceAgent.Get(ConfigurationManager.AppSettings["OrganisationIdToTryToUse"]);
-                Console.WriteLine("Organisation with that ID does exist");
-                Console.WriteLine();
-            }
-            catch (Exception)
-            {
-                organisation = OrganisationsServiceAgent.Post(new Organisation { Active = true, Name = "CMZero2" });
-                Console.WriteLine("NEW ORGANISATIONID IS " + organisation.Id);
-                Console.WriteLine();
-            }
-
-            if (organisation == null)
-            {
-                Console.WriteLine("ERROR CREATING ORGANISATION, process aborted");
-                Console.ReadLine();
-                return null;
-            }
-            return organisation;
+            return new OrganisationGetter(OrganisationsServiceAgent).GetOrganisation();
         }
     }
+    public class BasicContentArea
+    {
+        public string Name { get; set; }
+        public string Content { get; set; }
+    }
+
 }
