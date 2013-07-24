@@ -6,5 +6,9 @@
 		{
 			"Name": "LoginLinkTitle",
 			"Content" : "Login"
+		},
+		{
+			"Name": "LoginLinkText",
+			"Content": "Login"
 		}
 ]
