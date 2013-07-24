@@ -1,8 +1,11 @@
-﻿<header class="jumbotron subhead" id="overview">
+﻿@model CMZero.Web.Models.ViewModels.BaseLabelsViewModel
+
+
+<header class="jumbotron subhead" id="overview">
   <div class="row">
     <div class="span6">
-      <h1>CMZero</h1>
-      <p class="lead">Simple label based content management system</p>
+      <h1>@Model.GetLabel("MainH1")</h1>
+      <p class="lead">@Model.GetLabel("Lead")</p>
     </div>
     <div class="span6">
       <div class="bsa well">
@@ -12,12 +15,12 @@
   </div>
   <div class="subnav">
     <ul class="nav nav-pills">
-      <li><a href="#typography">Typography</a></li>
-      <li><a href="#navbar">Navbar</a></li>
-      <li><a href="#buttons">Buttons</a></li>
-      <li><a href="#forms">Forms</a></li>
-      <li><a href="#tables">Tables</a></li>
-      <li><a href="#miscellaneous">Miscellaneous</a></li>
+      <li><a href="#concept">@Model.GetLabel("ConceptLink")</a></li>
+      <li><a href="#gettingstarted">Getting started</a></li>
+      <li><a href="#howtouse">@Model.GetLabel("HowToUseLink")</a></li>
+      <li><a href="#whylabelbased">@Model.GetLabel("WhyLabelBasedLink")</a></li>
+      <li><a href="#about">@Model.GetLabel("AboutLink")</a></li>
+      <li><a href="#contact">@Model.GetLabel("ContactLink")</a></li>
     </ul>
   </div>
 </header>

@@ -60,6 +60,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Collections\MastHead.json" />
     <None Include="Collections\NavBar.json" />
     <None Include="Collections\Home Page.json" />
     <None Include="packages.config" />

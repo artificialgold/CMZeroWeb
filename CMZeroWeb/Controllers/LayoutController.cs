@@ -25,7 +25,12 @@ namespace CMZeroWeb.Controllers
 
         public PartialViewResult MastHead()
         {
-            return PartialView("_MastHead");
+            BaseLabelsViewModel model = new BaseLabelsViewModel
+            {
+                Labels = _labelCollectionRetriever.Get("MastHead")
+            };
+
+            return PartialView("_MastHead", model);
         }
 
         public PartialViewResult Footer()

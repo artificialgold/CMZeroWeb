@@ -1,0 +1,34 @@
+﻿[
+        {
+            "Name": "MainH1",
+            "Content": "Label based CMS"
+        },
+        {
+            "Name": "Lead",
+            "Content": "Manage HTML and labels in small chunks. Integrates simply into your existing apps."
+        },
+		{
+			"Name" : "ConceptLink",
+			"Content" : "Concept"
+		},
+		{
+			"Name" : "GettingStartedLink",
+			"Content" : "Getting started"
+		},
+		{
+			"Name" : "HowToUseLink",
+			"Content" : "How to use"
+		},
+		{
+			"Name" : "WhyLabelBasedLink",
+			"Content" : "Why label based"
+		},
+		{
+			"Name" : "AboutLink",
+			"Content" : "About CMZero"
+		},
+		{
+			"Name" : "ContactLink",
+			"Content" : "Contact"
+		}
+]
