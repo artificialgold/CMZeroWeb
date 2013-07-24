@@ -53,6 +53,8 @@
     <Compile Include="Labels\Mappers\IContentAreaMapper.cs" />
     <Compile Include="Labels\Mappers\ILabelCollectionMapper.cs" />
     <Compile Include="Labels\Mappers\LabelCollectionMapper.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemSettings.cs" />
   </ItemGroup>

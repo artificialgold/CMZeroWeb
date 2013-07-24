@@ -1,10 +1,10 @@
 ﻿[
         {
-            "Name": "Gallery",
-            "Content": "GalleryARSEARSEARSEARSE"
-        },
-        {
             "Name": "BrandLink",
             "Content": "CMZero"
-        }
+        },
+		{
+			"Name": "LoginLinkTitle",
+			"Content" : "Login"
+		}
 ]

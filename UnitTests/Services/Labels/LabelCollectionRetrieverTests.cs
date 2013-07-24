@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
-
+using System.Linq;
 using CMZero.API.Messages;
+using CMZero.API.Messages.Exceptions.ApiKeys;
 using CMZero.API.ServiceAgent;
 using CMZero.Web.Models;
 using CMZero.Web.Services;
 using CMZero.Web.Services.Labels;
 using CMZero.Web.Services.Labels.Mappers;
-
+using CMZero.Web.Services.Logging;
 using NSubstitute;
-
 using NUnit.Framework;
 
 using Shouldly;
@@ -27,6 +27,7 @@ namespace CMZero.Web.UnitTests.Services.Labels
             protected IContentAreasServiceAgent ContentAreasServiceAgent;
 
             protected ISystemSettings SystemSettings;
+            protected ILogger Logger;
 
             [SetUp]
             public virtual void SetUp()
@@ -34,7 +35,8 @@ namespace CMZero.Web.UnitTests.Services.Labels
                 LabelCollectionMapper = Substitute.For<ILabelCollectionMapper>();
                 ContentAreasServiceAgent = Substitute.For<IContentAreasServiceAgent>();
                 SystemSettings = Substitute.For<ISystemSettings>();
-                LabelCollectionRetriever = new LabelCollectionRetriever(LabelCollectionMapper, ContentAreasServiceAgent, SystemSettings);
+                Logger = Substitute.For<ILogger>();
+                LabelCollectionRetriever = new LabelCollectionRetriever(LabelCollectionMapper, ContentAreasServiceAgent, SystemSettings, Logger);
             }
         }
 
@@ -64,6 +66,36 @@ namespace CMZero.Web.UnitTests.Services.Labels
             public void it_should_return_collection_from_service_agent()
             {
                 result.ShouldBe(mappedValueFromServiceAgent);
+            }
+        }
+
+        [TestFixture]
+        public class When_I_call_Get_and_labelcollectionretriever_throws_an_error : Given_a_LabelCollectionRetriever
+        {
+            private const string ApiKey = "test";
+            private const string CollectionName = "collectionName";
+            private LabelCollection _result;
+
+            [SetUp]
+            public new virtual void SetUp()
+            {
+                base.SetUp();
+                ContentAreasServiceAgent.GetByCollectionNameAndApiKey(ApiKey, CollectionName)
+                                        .Returns(x => { throw new ApiKeyNotValidException(); });
+                SystemSettings.ApiKey.Returns(ApiKey);
+                _result = LabelCollectionRetriever.Get(CollectionName);
+            }
+
+            [Test]
+            public void it_should_return_empty_collection()
+            {
+                _result.ContentAreas.Count().ShouldBe(0);
+            }
+
+            [Test]
+            public void it_should_call_logger()
+            {
+                Logger.ReceivedCalls().Count().ShouldBe(1);
             }
         }
     }
