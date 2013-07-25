@@ -4,6 +4,53 @@
     ViewBag.Title = @Model.GetLabel("PageTitle");
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@{ Html.RenderAction("MastHead", "Layout"); }
+
 <h1>@Model.GetLabel("MainH1")</h1>
 
 @Model.GetLabel("MainBody")
+
+
+<section id="concept">
+    <div class="page-header">
+        <h1>@Model.GetLabel("ConceptTitle")</h1>
+    </div>
+    <p>@Model.GetLabel("ConceptBody")</p>
+</section>
+
+<section id="gettingstarted">
+    <div class="page-header">
+        <h1>@Model.GetLabel("GettingStartedTitle")</h1>
+    </div>
+    <p>@Model.GetLabel("GettingStartedBody")</p>
+</section>
+
+<section id="howtouse">
+    <div class="page-header">
+        <h1>@Model.GetLabel("HowToUseTitle")</h1>
+    </div>
+    <p>@Model.GetLabel("HowToUseBody")</p>
+</section>
+
+<section id="whylabelbased">
+    <div class="page-header">
+        <h1>@Model.GetLabel("WhyLabelBasedTitle")</h1>
+    </div>
+    <p>@Model.GetLabel("WhyLabelBasedBody")</p>
+</section>
+
+<section id="about">
+    <div class="page-header">
+        <h1>@Model.GetLabel("AboutTitle")</h1>
+    </div>
+    <p>@Model.GetLabel("AboutBody")</p>
+</section>
+
+<section id="contact">
+    <div class="page-header">
+        <h1>@Model.GetLabel("ContactTitle")</h1>
+    </div>
+    <p>@Model.GetLabel("ContactBody")</p>
+</section>
+

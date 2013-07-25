@@ -10,5 +10,53 @@
 		{
 			"Name" : "MainH1",
 			"Content" : "Content management for smaller chunks"
+		},
+		{
+			"Name": "ConceptTitle",
+			"Content" : "The concept"
+		},
+		{
+			"Name": "ConceptBody",
+			"Content" : "Label based CMS makes things easier to change and integrate"
+		},
+		{
+			"Name": "GettingStartedTitle",
+			"Content" : "Getting started"
+		},
+		{
+			"Name": "GettingStartedBody",
+			"Content" : "To get started you need an api key. Sign up here..."
+		},
+		{
+			"Name": "HowToUseTitle",
+			"Content" : "How to use"
+		},
+		{
+			"Name": "HowToUseBody",
+			"Content" : "All you need to do is enter your labels into out CMS and then call the API in your view model"
+		},
+		{
+			"Name": "WhyLabelBasedTitle",
+			"Content" : "Why label based?"
+		},
+		{
+			"Name": "WhyLabelBasedBody",
+			"Content" : "Label based CMS allows to you just have individual labels editable in your system. No onerous frameworks that wont suite your needs. Mobile apps need a release to change a label? Not any more."
+		},
+		{
+			"Name": "AboutTitle",
+			"Content" : "About"
+		},
+		{
+			"Name": "AboutBody",
+			"Content" : "CMZero is fully opensource and developed by Artificial Gold. We charge for the hosted version but you can download for yourself at..."
+		},
+		{
+			"Name": "ContactTitle",
+			"Content" : "Contact"
+		},
+		{
+			"Name": "ContactBody",
+			"Content" : "You can contact on twitter @artificialgold."
 		}
 ]
