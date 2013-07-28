@@ -1,7 +1,7 @@
 ﻿namespace CMZero.Web.Models.ViewModels
 {
-    public class DashboardViewModel
+    public class DashboardViewModel : BaseLabelsViewModel
     {
-         
+
     }
 }
