@@ -4,6 +4,6 @@ namespace CMZero.Web.Services.Labels
 {
     public interface ILabelCollectionRetriever
     {
-        LabelCollection Get(string collectionId);
+        LabelCollection Get(string collectionName);
     }
 }

@@ -1,0 +1,36 @@
+﻿[
+
+        {
+            "Name": "PageTitle",
+            "Content": "Login :: CMZero - Small chunk content management system"
+        },
+		{
+			"Name" : "MainH1",
+			"Content" : "Login to CMZero Dashboard"
+		},
+		{
+			"Name" : "OrganisationNameLabel",
+			"Content" : "Organisation Name"
+		},
+		{
+			"Name" : "OrganisationNamePlaceholder",
+			"Content" : "Organisation Name"
+		},
+		{
+			"Name" : "PasswordLabel",
+			"Content" : "Password"
+		},
+		{
+			"Name" : "PasswordPlaceholder",
+			"Content" : "Password"
+		},
+		{
+			"Name" : "SubmitButtonText",
+			"Content" : "Login"
+		},
+		{
+			"Name" : "LegendText",
+			"Content" : "Please enter your credentials"
+		}
+		
+]

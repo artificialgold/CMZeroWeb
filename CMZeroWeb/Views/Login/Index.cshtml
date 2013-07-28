@@ -1,0 +1,34 @@
+﻿@model CMZero.Web.Models.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = @Model.GetLabel("PageTitle");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.GetLabel("MainH1")</h1>
+
+<script type="text/javascript">
+    $('#SubmitLogin').submit(function () {
+        alert('Handler for .submit() called.');
+        return false;
+    });
+</script>
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post, new {@class = "form-horizontal well"}))
+{
+    <legend>@Model.GetLabel("LegendText")</legend>
+    <div class="control-group">
+        <label class="control-label" for="NameInput">@Model.GetLabel("OrganisationNameLabel")</label>
+        <div class="controls">
+            <input class="input-xlarge" id="NameInput" type="text"  placeholder="@Model.GetLabel("OrganisationNamePlaceholder")">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="PasswordInput">@Model.GetLabel("PasswordLabel")</label>
+        <div class="controls">
+            <input class="input-xlarge" id="PasswordInput" type="password"  placeholder="@Model.GetLabel("PasswordPlaceholder")">
+            <button type="submit" class="btn" id="SubmitLogin">@Model.GetLabel("SubmitButtonText")</button>
+            <p class="help-block">Please enter your organisation name and password.</p>
+        </div>
+    </div>
+}

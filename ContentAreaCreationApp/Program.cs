@@ -33,6 +33,8 @@ namespace ContentAreaCreationApp
             GetContentAreas("Home Page", application, collectionsAlreadyExisting);
             GetContentAreas("NavBar", application, collectionsAlreadyExisting);
             GetContentAreas("MastHead", application, collectionsAlreadyExisting);
+            GetContentAreas("LoginPage", application, collectionsAlreadyExisting);
+
 
             Console.WriteLine();
             Console.WriteLine("press Enter to continue");
