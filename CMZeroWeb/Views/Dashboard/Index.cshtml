@@ -1,6 +1,13 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model CMZero.Web.Models.ViewModels.DashboardViewModel
+
+@{
+    ViewBag.Title = @Model.GetLabel("PageTitle");
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h1>@Model.GetLabel("MainH1")</h1>
+
+@*Display organisation name*@
+
+
+@*Display applications to work with*@

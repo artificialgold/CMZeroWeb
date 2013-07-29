@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticatedUserDetails.cs" />
     <Compile Include="LabelCollection.cs" />
     <Compile Include="Logging\LogEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

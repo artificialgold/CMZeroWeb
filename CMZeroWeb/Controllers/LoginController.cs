@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using CMZero.Web.Models.ViewModels;
 using CMZero.Web.Services.Labels;
+using CMZero.Web.Services.Login;
 
 namespace CMZeroWeb.Controllers
 {
@@ -8,11 +9,14 @@ namespace CMZeroWeb.Controllers
     {
         private readonly ILabelCollectionRetriever _labelCollectionRetriever;
 
-        public LoginController(ILabelCollectionRetriever labelCollectionRetriever)
+        private readonly IFormsAuthenticationService _formsAuthenticationService;
+
+        public LoginController(ILabelCollectionRetriever labelCollectionRetriever, IFormsAuthenticationService formsAuthenticationService)
         {
             _labelCollectionRetriever = labelCollectionRetriever;
+            _formsAuthenticationService = formsAuthenticationService;
         }
-        
+
         [HttpGet]
         public ViewResult Index()
         {
@@ -26,9 +30,14 @@ namespace CMZeroWeb.Controllers
 
         //TODO: This needs doing properly, try to use 3rd party if possible
         [HttpPost]
-        public RedirectToRouteResult Login(string mameInput, string passwordInput)
+        public RedirectToRouteResult Login(string nameInput, string passwordInput, bool? rememberMeCheckBox)
         {
+            var x = (string)RouteData.Values["nameInput"];
+            _formsAuthenticationService.SignIn(nameInput, "test", "test", rememberMeCheckBox.Value);
+
             return RedirectToAction("Index", "Dashboard");
         }
+
+
     }
 }

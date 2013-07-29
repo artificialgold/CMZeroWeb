@@ -31,6 +31,13 @@
 		{
 			"Name" : "LegendText",
 			"Content" : "Please enter your credentials"
+		},
+		{
+			"Name" : "RememberMeText".
+			"Content" : "Remember me"
+		},
+		{
+			"Name" : "RememberMeDescription".
+			"Content" : "Tick me to stay logged in"
 		}
-		
 ]

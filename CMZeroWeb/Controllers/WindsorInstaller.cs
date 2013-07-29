@@ -4,6 +4,8 @@ using CMZero.Web.Services;
 using CMZero.Web.Services.Labels;
 using CMZero.Web.Services.Labels.Mappers;
 using CMZero.Web.Services.Logging;
+using CMZero.Web.Services.Login;
+
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -18,6 +20,8 @@ namespace CMZeroWeb.Controllers
             container.Register(Component.For<StyleGuideController>().ImplementedBy<StyleGuideController>().LifeStyle.Transient);
             container.Register(Component.For<LayoutController>().ImplementedBy<LayoutController>().LifeStyle.Transient);
             container.Register(Component.For<LoginController>().ImplementedBy<LoginController>().LifeStyle.Transient);
+            container.Register(Component.For<DashboardController>().ImplementedBy<DashboardController>().LifeStyle.Transient);
+            
         }
     }
 
@@ -33,7 +37,10 @@ namespace CMZeroWeb.Controllers
             container.Register(
                 Component.For<ILabelCollectionMapper>().ImplementedBy<LabelCollectionMapper>().LifeStyle.Transient);
             container.Register(Component.For<ILogger>().ImplementedBy<Logger>().LifeStyle.Transient);
-
+            container.Register(
+                Component.For<IFormsAuthenticationService>()
+                         .ImplementedBy<FormsAuthenticationService>()
+                         .LifeStyle.Transient);
 
             container.Register(
                 Component.For<IContentAreasServiceAgent>().ImplementedBy<ContentAreasServiceAgent>()
