@@ -22,15 +22,15 @@
         <label class="control-label" for="PasswordInput">@Model.GetLabel("PasswordLabel")</label>
         <div class="controls">
             <input class="input-xlarge" id="PasswordInput" name="PasswordInput" type="password"  placeholder="@Model.GetLabel("PasswordPlaceholder")">
+            <button type="submit" class="btn" id="SubmitLogin">@Model.GetLabel("SubmitButtonText")</button>
         </div>
     </div>
-    <div class="control-group">
+    @*<div class="control-group">
         <label class="control-label" for="rememberMeCheckBox">@Model.GetLabel("RememberMeText")</label>
         <div class="controls">
             <input type="checkbox" id="rememberMeCheckBox" name="rememberMeCheckBox" value="true">
-            
                 @Model.GetLabel("RememberMeDescription")
-              <button type="submit" class="btn" id="SubmitLogin">@Model.GetLabel("SubmitButtonText")</button>
+            
         </div>
-    </div>
+    </div>*@
 }

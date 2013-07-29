@@ -1,4 +1,6 @@
-﻿namespace CMZero.Web.Services.Login
+﻿using CMZero.Web.Models;
+
+namespace CMZero.Web.Services.Login
 {
     public interface IFormsAuthenticationService
     {
@@ -7,5 +9,7 @@
         void SignOut();
 
         bool IsAuthenticated();
+
+        AuthenticatedUserDetails GetAuthenticatedUserData();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using CMZero.Web.Models.ViewModels;
 using CMZero.Web.Services.Labels;
+using CMZero.Web.Services.Login;
 
 namespace CMZeroWeb.Controllers
 {
@@ -15,6 +16,9 @@ namespace CMZeroWeb.Controllers
 
         public ActionResult Index()
         {
+            var faService = new FormsAuthenticationService();
+            var result = faService.GetAuthenticatedUserData();
+
             var model = new DashboardViewModel
                                            {
                                                Labels = _labelCollectionRetriever.Get("DashboardPage")

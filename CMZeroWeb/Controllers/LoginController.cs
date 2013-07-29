@@ -30,10 +30,10 @@ namespace CMZeroWeb.Controllers
 
         //TODO: This needs doing properly, try to use 3rd party if possible
         [HttpPost]
-        public RedirectToRouteResult Login(string nameInput, string passwordInput, bool? rememberMeCheckBox)
+        public RedirectToRouteResult Login(string nameInput, string passwordInput)
         {
             var x = (string)RouteData.Values["nameInput"];
-            _formsAuthenticationService.SignIn(nameInput, "test", "test", rememberMeCheckBox.Value);
+            _formsAuthenticationService.SignIn(nameInput, "test", "test", true);
 
             return RedirectToAction("Index", "Dashboard");
         }

@@ -33,7 +33,7 @@ namespace CMZero.Web.Services.Login
             return GetAuthenticatedUserData().IsAuthenticated;
         }
 
-        public static AuthenticatedUserDetails GetAuthenticatedUserData()
+        public AuthenticatedUserDetails GetAuthenticatedUserData()
         {
             if (HttpContext.Current.User != null)
             {
