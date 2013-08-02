@@ -33,11 +33,11 @@
 			"Content" : "Please enter your credentials"
 		},
 		{
-			"Name" : "RememberMeText".
+			"Name" : "RememberMeText",
 			"Content" : "Remember me"
 		},
 		{
-			"Name" : "RememberMeDescription".
+			"Name" : "RememberMeDescription",
 			"Content" : "Tick me to stay logged in"
 		}
 ]

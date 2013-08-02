@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using CMZero.API.ServiceAgent;
 using CMZero.Web.Models.ViewModels;
 using CMZero.Web.Services.Labels;
 using CMZero.Web.Services.Login;
@@ -33,7 +34,10 @@ namespace CMZeroWeb.Controllers
         public RedirectToRouteResult Login(string nameInput, string passwordInput)
         {
             var x = (string)RouteData.Values["nameInput"];
-            _formsAuthenticationService.SignIn(nameInput, "test", "test", true);
+
+            var organisationId = "fa3af0f3-9e5b-4797-98f1-2dde407dd3c7";
+
+            _formsAuthenticationService.SignIn(organisationId, true);
 
             return RedirectToAction("Index", "Dashboard");
         }

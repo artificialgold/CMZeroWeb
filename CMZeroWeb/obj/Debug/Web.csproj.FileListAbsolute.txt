@@ -64,6 +64,8 @@ C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\bin\CMZeroWeb.dll
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\bin\CMZeroWeb.pdb
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\bin\Castle.Core.dll
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\bin\Castle.Windsor.dll
+C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\bin\CMZero.API.Messages.dll
+C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\bin\CMZero.API.ServiceAgent.dll
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\bin\CMZero.Web.Models.dll
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\bin\CMZero.Web.Services.dll
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\bin\Microsoft.Web.Infrastructure.dll
@@ -96,5 +98,3 @@ C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\bin\System.Web.WebPages.Raz
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\obj\Debug\Web.csprojResolveAssemblyReference.cache
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\obj\Debug\CMZeroWeb.dll
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\obj\Debug\CMZeroWeb.pdb
-C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\bin\CMZero.API.Messages.dll
-C:\Users\Andrew\Documents\GitHub\CMZeroWeb\CMZeroWeb\bin\CMZero.API.ServiceAgent.dll

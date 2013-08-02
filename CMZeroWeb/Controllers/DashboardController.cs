@@ -1,28 +1,24 @@
 ﻿using System.Web.Mvc;
+using CMZero.API.ServiceAgent;
 using CMZero.Web.Models.ViewModels;
 using CMZero.Web.Services.Labels;
 using CMZero.Web.Services.Login;
+using CMZero.Web.Services.ViewModelGetters;
 
 namespace CMZeroWeb.Controllers
 {
     public class DashboardController : Controller
     {
-        private ILabelCollectionRetriever _labelCollectionRetriever;
+        private readonly IDashboardViewModelGetter _dashboardViewModelGetter;
 
-        public DashboardController(ILabelCollectionRetriever labelCollectionRetriever)
+        public DashboardController(IDashboardViewModelGetter dashboardViewModelGetter)
         {
-            _labelCollectionRetriever = labelCollectionRetriever;
+            _dashboardViewModelGetter = dashboardViewModelGetter;
         }
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            var faService = new FormsAuthenticationService();
-            var result = faService.GetAuthenticatedUserData();
-
-            var model = new DashboardViewModel
-                                           {
-                                               Labels = _labelCollectionRetriever.Get("DashboardPage")
-                                           };
+            var model = _dashboardViewModelGetter.Get();
 
             return View("Index", model);
         }

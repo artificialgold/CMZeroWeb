@@ -1,15 +1,9 @@
-﻿using CMZero.Web.Models;
-
-namespace CMZero.Web.Services.Login
+﻿namespace CMZero.Web.Services.Login
 {
     public interface IFormsAuthenticationService
     {
-        void SignIn(string userName, string organisationId, string roles, bool createPersistentCookie);
-
+        void SignIn(string organisationId, bool createPersistentCookie);
+        string GetLoggedInOrganisationId();
         void SignOut();
-
-        bool IsAuthenticated();
-
-        AuthenticatedUserDetails GetAuthenticatedUserData();
     }
 }
