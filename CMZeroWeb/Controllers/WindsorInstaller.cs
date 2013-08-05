@@ -1,11 +1,12 @@
 ﻿using System.Configuration;
 using CMZero.API.ServiceAgent;
 using CMZero.Web.Services;
+using CMZero.Web.Services.Applications;
 using CMZero.Web.Services.Labels;
 using CMZero.Web.Services.Labels.Mappers;
 using CMZero.Web.Services.Logging;
 using CMZero.Web.Services.Login;
-
+using CMZero.Web.Services.ViewModelGetters;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -41,10 +42,16 @@ namespace CMZeroWeb.Controllers
                 Component.For<IFormsAuthenticationService>()
                          .ImplementedBy<FormsAuthenticationService>()
                          .LifeStyle.Transient);
+            container.Register(
+                Component.For<IDashboardViewModelGetter>().ImplementedBy<DashboardViewModelGetter>().LifeStyle.Transient);
+            container.Register(Component.For<IApplicationService>().ImplementedBy<ApplicationService>().LifeStyle.Transient);
 
             container.Register(
                 Component.For<IContentAreasServiceAgent>().ImplementedBy<ContentAreasServiceAgent>()
                 .DependsOn(Property.ForKey("baseUri").Eq(ConfigurationManager.AppSettings["BaseUri"])).LifestyleTransient());
+            container.Register(
+                            Component.For<IApplicationsServiceAgent>().ImplementedBy<ApplicationsServiceAgent>()
+                            .DependsOn(Property.ForKey("baseUri").Eq(ConfigurationManager.AppSettings["BaseUri"])).LifestyleTransient());
 
         }
     }
