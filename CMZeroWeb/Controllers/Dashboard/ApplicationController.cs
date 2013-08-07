@@ -1,30 +1,31 @@
 ﻿using System.Web.Mvc;
 using CMZero.API.Messages.Exceptions.Applications;
 using CMZero.Web.Services.Applications;
+using CMZero.Web.Services.ViewModelGetters;
 
 namespace CMZeroWeb.Controllers.Dashboard
 {
     public class ApplicationController : Controller
     {
-        private readonly IApplicationService _applicationService;
+        private readonly IApplicationViewModelGetter _applicationViewModelGetter;
 
-        public ApplicationController(IApplicationService applicationService)
+        public ApplicationController(IApplicationViewModelGetter applicationViewModelGetter)
         {
-            _applicationService = applicationService;
+            _applicationViewModelGetter = applicationViewModelGetter;
         }
 
         public ActionResult Index(string id)
         {
             try
             {
-                _applicationService.GetById(id);
+                var model = _applicationViewModelGetter.Get(id);
+                return View("~/Views/Dashboard/Application/Index.cshtml", model);
+
             }
             catch (ApplicationIdNotPartOfOrganisationException)
             {
                 return RedirectToRoute("OhBugger");
             }
-
-            return View("~/Views/Dashboard/Application/Index.cshtml");
         }
     }
 }

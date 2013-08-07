@@ -59,7 +59,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers
         public class When_I_call_Error : Given_a_DashboardController
         {
             private ViewResult _result;
-            private LabelCollection _labelsFromRetriever;
+            private readonly LabelCollection _labelsFromRetriever = new LabelCollection();
 
             [SetUp]
             public new virtual void SetUp()
