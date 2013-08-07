@@ -28,14 +28,14 @@ namespace ContentAreaCreationApp
 
             var application = GetApplication(organisation);
 
-            IEnumerable<Collection> collectionsAlreadyExisting = CollectionServiceAgent.GetByApiKey(application.ApiKey);
+            IEnumerable<Collection> collectionsAlreadyExisting = CollectionServiceAgent.GetByApiKey(application.ApiKey).ToArray();
 
             GetContentAreas("Home Page", application, collectionsAlreadyExisting);
             GetContentAreas("NavBar", application, collectionsAlreadyExisting);
             GetContentAreas("MastHead", application, collectionsAlreadyExisting);
             GetContentAreas("LoginPage", application, collectionsAlreadyExisting);
             GetContentAreas("DashboardPage", application, collectionsAlreadyExisting);
-            GetContentAreas("EditApplicationPage", application, collectionsAlreadyExisting);
+            GetContentAreas("ApplicationPage", application, collectionsAlreadyExisting);
 
 
 

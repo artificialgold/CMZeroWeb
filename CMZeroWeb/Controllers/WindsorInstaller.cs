@@ -46,6 +46,8 @@ namespace CMZeroWeb.Controllers
             container.Register(
                 Component.For<IDashboardViewModelGetter>().ImplementedBy<DashboardViewModelGetter>().LifeStyle.Transient);
             container.Register(Component.For<IApplicationService>().ImplementedBy<ApplicationService>().LifeStyle.Transient);
+            container.Register(Component.For<IApplicationViewModelGetter>().ImplementedBy<ApplicationViewModelGetter>().LifeStyle.Transient);
+            
 
             container.Register(
                 Component.For<IContentAreasServiceAgent>().ImplementedBy<ContentAreasServiceAgent>()

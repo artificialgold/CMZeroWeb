@@ -1,9 +1,14 @@
-﻿@{
+﻿@model CMZero.Web.Models.ViewModels.ApplicationViewModel
+
+@{
     ViewBag.Title = Model.GetLabel("PageTitle");
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>@Model.GetLabel("MainH1")</h1>
+
+@Model.Application.Name
+
 
 
 @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form-horizontal well" }))

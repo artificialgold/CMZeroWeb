@@ -60,7 +60,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Collections\EditApplicationPage.json" />
+    <None Include="Collections\ApplicationPage.json" />
     <None Include="Collections\DashboardPage.json" />
     <None Include="Collections\LoginPage.json" />
     <None Include="Collections\MastHead.json" />
