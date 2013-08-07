@@ -7,6 +7,7 @@ using CMZero.Web.Services.Labels.Mappers;
 using CMZero.Web.Services.Logging;
 using CMZero.Web.Services.Login;
 using CMZero.Web.Services.ViewModelGetters;
+using CMZeroWeb.Controllers.Dashboard;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -22,7 +23,7 @@ namespace CMZeroWeb.Controllers
             container.Register(Component.For<LayoutController>().ImplementedBy<LayoutController>().LifeStyle.Transient);
             container.Register(Component.For<LoginController>().ImplementedBy<LoginController>().LifeStyle.Transient);
             container.Register(Component.For<DashboardController>().ImplementedBy<DashboardController>().LifeStyle.Transient);
-            
+            container.Register(Component.For<ApplicationController>().ImplementedBy<ApplicationController>().LifeStyle.Transient);
         }
     }
 

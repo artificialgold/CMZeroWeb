@@ -89,6 +89,7 @@
     <Compile Include="Services\Labels\Mappers\ContentAreaMapperTests.cs" />
     <Compile Include="Services\Labels\Mappers\LabelCollectionMapperTests.cs" />
     <Compile Include="Services\ViewModelGetters\DashboardViewModelGetterTests.cs" />
+    <Compile Include="Web\Controllers\Applications\ApplicationControllerTests.cs" />
     <Compile Include="Web\Controllers\DashboardControllerTests.cs" />
     <Compile Include="Web\Controllers\HomeControllerTests.cs" />
   </ItemGroup>

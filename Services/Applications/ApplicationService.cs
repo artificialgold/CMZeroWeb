@@ -25,5 +25,10 @@ namespace CMZero.Web.Services.Applications
                 throw new Models.Exceptions.OrganisationIdNotValidException();
             }
         }
+
+        public Application GetById(string id)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

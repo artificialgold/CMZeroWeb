@@ -11,3 +11,10 @@
 
 
 @*Display applications to work with*@
+@Model.GetLabel("ApplicationsTitle")
+@{
+    foreach (var application in Model.Applications)
+    {
+        <p><a href="/dashboard/application/@application.Id">@application.Name</a></p>
+    }
+}

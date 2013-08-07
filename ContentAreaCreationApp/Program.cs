@@ -34,6 +34,9 @@ namespace ContentAreaCreationApp
             GetContentAreas("NavBar", application, collectionsAlreadyExisting);
             GetContentAreas("MastHead", application, collectionsAlreadyExisting);
             GetContentAreas("LoginPage", application, collectionsAlreadyExisting);
+            GetContentAreas("DashboardPage", application, collectionsAlreadyExisting);
+            GetContentAreas("EditApplicationPage", application, collectionsAlreadyExisting);
+
 
 
             Console.WriteLine();

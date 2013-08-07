@@ -1,11 +1,11 @@
 ﻿[
 		{
 			"Name": "MainH1",
-			"Content": "Dashboard"
+			"Content": "Edit your application"
 		},
 		{
 			"Name": "PageTitle",
-			"Content": "Your dashboard :: CMZero - Small chunk content management system"
+			"Content": "Edit your application :: CMZero - Small chunk content management system"
 		},
 		{
 			"Name": "ApplicationsTitle",

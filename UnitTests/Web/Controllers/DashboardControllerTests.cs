@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
+using CMZero.Web.Models;
 using CMZero.Web.Models.ViewModels;
+using CMZero.Web.Services.Labels;
 using CMZero.Web.Services.ViewModelGetters;
 using CMZeroWeb.Controllers;
 using NSubstitute;
@@ -15,13 +17,14 @@ namespace CMZero.Web.UnitTests.Web.Controllers
         {
             protected DashboardController DashboardController;
             protected IDashboardViewModelGetter DashboardViewModelGetter;
+            protected ILabelCollectionRetriever LabelCollectionRetriever;
 
             [SetUp]
             public virtual void SetUp()
             {
-                DashboardViewModelGetter = NSubstitute.Substitute.For<IDashboardViewModelGetter>();
-                DashboardController = new DashboardController(DashboardViewModelGetter);
-
+                DashboardViewModelGetter = Substitute.For<IDashboardViewModelGetter>();
+                LabelCollectionRetriever = Substitute.For<ILabelCollectionRetriever>();
+                DashboardController = new DashboardController(DashboardViewModelGetter, LabelCollectionRetriever);
             }
         }
 
@@ -49,6 +52,34 @@ namespace CMZero.Web.UnitTests.Web.Controllers
             public void it_should_return_index_view()
             {
                 _result.ViewName.ShouldBe("Index");
+            }
+        }
+
+        [TestFixture]
+        public class When_I_call_Error : Given_a_DashboardController
+        {
+            private ViewResult _result;
+            private LabelCollection _labelsFromRetriever;
+
+            [SetUp]
+            public new virtual void SetUp()
+            {
+                base.SetUp();
+                LabelCollectionRetriever.Get("DashboardErrorPage");
+                _result = DashboardController.Error();
+            }
+
+            [Test]
+            public void it_should_return_error_view()
+            {
+                _result.ViewName.ShouldBe("Error");
+            }
+
+            [Test]
+            public void it_should_return_labels_from_retriever_in_model()
+            {
+                var model = (DashboardErrorViewModel)_result.Model;
+                model.Labels.ShouldBe(_labelsFromRetriever);
             }
         }
     }

@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = Model.GetLabel("PageTitle");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.GetLabel("MainH1")</h1>
+
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form-horizontal well" }))
+{
+    <legend>@Model.GetLabel("LegendText")</legend>
+    <div class="control-group">
+        <label class="control-label" for="NameInput">@Model.GetLabel("OrganisationNameLabel")</label>
+        <div class="controls">
+            <input class="input-xlarge" id="NameInput" name="NameInput" type="text" placeholder="@Model.GetLabel("OrganisationNamePlaceholder")">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="PasswordInput">@Model.GetLabel("PasswordLabel")</label>
+        <div class="controls">
+            <input class="input-xlarge" id="PasswordInput" name="PasswordInput" type="password"  placeholder="@Model.GetLabel("PasswordPlaceholder")">
+            <button type="submit" class="btn" id="SubmitLogin">@Model.GetLabel("SubmitButtonText")</button>
+        </div>
+    </div>
+    @*<div class="control-group">
+        <label class="control-label" for="rememberMeCheckBox">@Model.GetLabel("RememberMeText")</label>
+        <div class="controls">
+            <input type="checkbox" id="rememberMeCheckBox" name="rememberMeCheckBox" value="true">
+                @Model.GetLabel("RememberMeDescription")
+            
+        </div>
+    </div>*@
+}

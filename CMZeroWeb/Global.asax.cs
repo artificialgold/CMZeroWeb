@@ -7,7 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Dependencies;
 using System.Web.Mvc;
 using System.Web.Routing;
-
+using CMZeroWeb.App_Start;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
 

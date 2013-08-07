@@ -2,8 +2,7 @@
 
 namespace CMZero.Web.Models.Exceptions
 {
-    public class OrganisationIdNotValidException : Exception
+    public class ApplicationNotPartOfOrganisationException : Exception
     {
-
     }
 }
