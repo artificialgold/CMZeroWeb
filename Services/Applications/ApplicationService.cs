@@ -20,10 +20,11 @@ namespace CMZero.Web.Services.Applications
             _formsAuthenticationService = formsAuthenticationService;
         }
 
-        public IEnumerable<Application> GetByOrganisationId(string organisationId)
+        public IEnumerable<Application> GetByOrganisationId()
         {
             try
             {
+                var organisationId = _formsAuthenticationService.GetLoggedInOrganisationId();
                 return _applicationServiceAgent.GetByOrganisation(organisationId);
             }
             catch (OrganisationIdNotValidException)
@@ -34,21 +35,29 @@ namespace CMZero.Web.Services.Applications
 
         public Application GetById(string id)
         {
-            string organisationId = _formsAuthenticationService.GetLoggedInOrganisationId();
-            var applicationsForOrganisation = GetByOrganisationId(organisationId).ToArray();
+            var applicationsForOrganisation = GetByOrganisationId().ToArray();
 
-            var applicationsWithId = (from a in applicationsForOrganisation
-                                                          where a.Id == id
-                                                          select a).ToArray();
+            var applicationsWithId = CheckApplicationExistsForOrganisation(id, applicationsForOrganisation);
+            var application = applicationsWithId.First();
+            return application;
+        }
+
+        private static Application[] CheckApplicationExistsForOrganisation(string id, Application[] applicationsForOrganisation)
+        {
+            var applicationsWithId = (from a in applicationsForOrganisation where a.Id == id select a).ToArray();
             var applicationExistsForOrganisation = applicationsWithId.Any();
 
-            if (!applicationExistsForOrganisation) throw new ApplicationNotPartOfOrganisationException();
-            var application = applicationsWithId.First();
-            return application; ;
+            if (!applicationExistsForOrganisation)
+            {
+                throw new ApplicationNotPartOfOrganisationException();
+            }
+            return applicationsWithId;
         }
 
         public Application Update(string id, string name)
         {
+            GetById(id);
+
             throw new NotImplementedException();
         }
     }

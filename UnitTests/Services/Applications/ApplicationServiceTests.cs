@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CMZero.API.Messages;
+using CMZero.API.Messages.Exceptions.Collections;
 using CMZero.API.ServiceAgent;
 using CMZero.Web.Models.Exceptions;
 using CMZero.Web.Services.Applications;
@@ -32,13 +34,12 @@ namespace CMZero.Web.UnitTests.Services.Applications
             : Given_an_ApplicationService
         {
             private OrganisationIdNotValidException _exception;
-            private const string OrganisationIdThatDoesNotExist = "orgId";
 
             [SetUp]
             public new virtual void SetUp()
             {
                 base.SetUp();
-                ApplicationService.GetByOrganisationId(OrganisationIdThatDoesNotExist)
+                ApplicationService.GetByOrganisationId()
                                   .Returns(
                                       x =>
                                       {
@@ -48,7 +49,7 @@ namespace CMZero.Web.UnitTests.Services.Applications
 
                 try
                 {
-                    ApplicationService.GetByOrganisationId(OrganisationIdThatDoesNotExist);
+                    ApplicationService.GetByOrganisationId();
                 }
                 catch (OrganisationIdNotValidException ex)
                 {
@@ -75,7 +76,7 @@ namespace CMZero.Web.UnitTests.Services.Applications
             {
                 base.SetUp();
                 ApplicationServiceAgent.GetByOrganisation(OrganisationId).Returns(_returnThis);
-                _result = ApplicationService.GetByOrganisationId(OrganisationId);
+                _result = ApplicationService.GetByOrganisationId();
             }
 
             [Test]
@@ -132,19 +133,63 @@ namespace CMZero.Web.UnitTests.Services.Applications
             }
         }
 
-        //[TestFixture]
-        //public class When_I_call_Update_with_applicationId_not_applicable_for_logged_organisation : Given_an_ApplicationService
-        //{
-        //    [SetUp]
-        //    public new virtual void SetUp()
-        //    {
-        //        base.SetUp();
-        //        try
-        //        {
-        //            ApplicationService.Update(applicationIdNotPartOfLoggedInOrganisation, newName);
-        //        }
-        //        catch()
-        //    }
-        //}
+        [TestFixture]
+        public class When_I_call_Update_with_applicationId_not_applicable_for_logged_organisation : Given_an_ApplicationService
+        {
+            private ApplicationNotPartOfOrganisationException _exception;
+
+            private const string OrganisationId = "orgId";
+
+            private const string ApplicationIdNotPartOfLoggedInOrganisation = "applicationIdNotValid";
+
+            private const string NewName = "new";
+
+            [SetUp]
+            public new virtual void SetUp()
+            {
+                base.SetUp();
+                try
+                {
+                    FormsAuthenticationService.GetLoggedInOrganisationId().Returns(OrganisationId);
+                    ApplicationServiceAgent.GetByOrganisation(OrganisationId).Returns(new List<Application>());
+                    ApplicationService.Update(ApplicationIdNotPartOfLoggedInOrganisation, NewName);
+                }
+                catch (ApplicationNotPartOfOrganisationException ex)
+                {
+                    _exception = ex;
+                }
+            }
+
+            [Test]
+            public void it_should_return_AppliationNotPartOfOrganisationException()
+            {
+                _exception.ShouldNotBe(null);
+            }
+        }
+
+        [TestFixture]
+        public class When_I_call_Update_with_application_name_that_already_exists : Given_an_ApplicationService
+        {
+            private Application _application;
+
+            private const string ApplicationId = "applicationId";
+
+            private const string NewNameThatAlreadyExists = "existingName";
+
+            [SetUp]
+            public new virtual void SetUp()
+            {
+                base.SetUp();
+                const string OrganisationId = "orgId";
+                FormsAuthenticationService.GetLoggedInOrganisationId().Returns(OrganisationId);
+                _application = new Application { Id = ApplicationId };
+                ApplicationServiceAgent.GetByOrganisation(OrganisationId)
+                                       .Returns(new List<Application> { _application });
+                _application.Name = NewNameThatAlreadyExists;
+                ApplicationServiceAgent.Put(_application)
+                                       .Returns(x => { throw new CollectionNameAlreadyExistsException(); });
+                ApplicationService.Update(ApplicationId, NewNameThatAlreadyExists);
+            }
+        }
     }
 }

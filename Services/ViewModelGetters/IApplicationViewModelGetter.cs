@@ -5,5 +5,7 @@ namespace CMZero.Web.Services.ViewModelGetters
     public interface IApplicationViewModelGetter
     {
         ApplicationViewModel Get(string applicationId);
+
+        ApplicationViewModel Update(string applicationId, string name);
     }
 }

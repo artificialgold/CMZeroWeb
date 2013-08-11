@@ -31,8 +31,15 @@ namespace CMZeroWeb.Controllers.Dashboard
 
         public ActionResult Update(string applicationId, string name)
         {
-
-            throw new NotImplementedException();
+            try
+            {
+                var model = _applicationViewModelGetter.Update(applicationId, name);
+                return View("~/Views/Dashboard/Application/Index.cshtml", model);
+            }
+            catch (ApplicationIdNotPartOfOrganisationException)
+            {
+                return RedirectToRoute("OhBugger");
+            }
         }
 
     }

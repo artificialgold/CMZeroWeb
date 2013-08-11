@@ -1,4 +1,5 @@
-﻿using CMZero.Web.Models;
+﻿using CMZero.API.Messages.Exceptions.Applications;
+using CMZero.Web.Models;
 using CMZero.Web.Models.Exceptions;
 using CMZero.Web.Models.ViewModels;
 using CMZero.Web.Services.Applications;
@@ -37,16 +38,13 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
         {
             private const string ApplicationIdThatDoesNotExist = "IDoNotExist";
             private ApplicationNotPartOfOrganisationException _exception;
-            private const string OrganisationIdFromFormsAuthenticationService = "fromAuthService";
 
             [SetUp]
             public new virtual void SetUp()
             {
                 base.SetUp();
-                FormsAuthenticationService.GetLoggedInOrganisationId()
-                                          .Returns(OrganisationIdFromFormsAuthenticationService);
-                ApplicationService.GetByOrganisationId(OrganisationIdFromFormsAuthenticationService)
-                                      .Returns(new List<Application>());
+                ApplicationService.GetById(ApplicationIdThatDoesNotExist)
+                                      .Returns(x => { throw new ApplicationNotPartOfOrganisationException(); });
                 try
                 {
                     ApplicationViewModelGetter.Get(ApplicationIdThatDoesNotExist);
@@ -69,8 +67,7 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
         {
             private ApplicationViewModel _result;
             private Application _applicationFromService;
-            private LabelCollection _labelsFromRetreiever=new LabelCollection();
-            private const string OrganisationIdFromAuthService = "orgIdFromAuthService";
+            private LabelCollection _labelsFromRetreiever = new LabelCollection();
             private const string ValidApplicationId = "iExist";
 
             [SetUp]
@@ -78,10 +75,9 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
             {
                 base.SetUp();
                 LabelCollectionRetriever.Get("ApplicationPage").Returns(_labelsFromRetreiever);
-                FormsAuthenticationService.GetLoggedInOrganisationId().Returns(OrganisationIdFromAuthService);
-                _applicationFromService = new Application {Id = ValidApplicationId};
-                ApplicationService.GetByOrganisationId(OrganisationIdFromAuthService)
-                                  .Returns(new List<Application> {_applicationFromService});
+                _applicationFromService = new Application { Id = ValidApplicationId };
+                ApplicationService.GetById(ValidApplicationId)
+                                  .Returns(_applicationFromService);
                 _result = ApplicationViewModelGetter.Get(ValidApplicationId);
             }
 
@@ -95,6 +91,22 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
             public void it_should_return_labels_from_retriever()
             {
                 _result.Labels.ShouldBe(_labelsFromRetreiever);
+            }
+        }
+
+        [TestFixture]
+        public class When_I_call_Update_with_an_applicationId_not_for_logged_in_organisation : Given_a_ApplicationViewModelGetter
+        {
+            private const string ApplicationIdNotPartOfOrganisation = "appIdNotPartOfOrg";
+
+            private const string NewName = "name";
+
+            [SetUp]
+            public new virtual void SetUp()
+            {
+                base.SetUp();
+                //ApplicationService.GetById(ApplicationIdNotPartOfOrganisation).Returns()
+                ApplicationViewModelGetter.Update(ApplicationIdNotPartOfOrganisation, NewName);
             }
         }
     }

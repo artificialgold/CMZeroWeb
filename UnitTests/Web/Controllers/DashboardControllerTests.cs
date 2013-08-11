@@ -65,7 +65,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers
             public new virtual void SetUp()
             {
                 base.SetUp();
-                LabelCollectionRetriever.Get("DashboardErrorPage");
+                LabelCollectionRetriever.Get("DashboardErrorPage").Returns(_labelsFromRetriever);
                 _result = DashboardController.Error();
             }
 

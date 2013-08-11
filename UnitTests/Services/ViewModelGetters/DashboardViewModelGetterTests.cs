@@ -28,7 +28,7 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
                 FormsAuthenticationService = Substitute.For<IFormsAuthenticationService>();
                 ApplicationService = Substitute.For<IApplicationService>();
                 LabelCollectionRetriever = Substitute.For<ILabelCollectionRetriever>();
-                DashboardViewModelGetter = new DashboardViewModelGetter(ApplicationService, FormsAuthenticationService, LabelCollectionRetriever);
+                DashboardViewModelGetter = new DashboardViewModelGetter(ApplicationService, LabelCollectionRetriever);
             }
         }
 
@@ -38,14 +38,12 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
             private DashboardViewModel _result;
             private readonly IEnumerable<Application> _applicationsFromService = new List<Application>();
             private readonly LabelCollection _labelsFromCollectionRetriever = new LabelCollection();
-            private const string OrganisationId = "organisationId";
 
             [SetUp]
             public new virtual void SetUp()
             {
                 base.SetUp();
-                FormsAuthenticationService.GetLoggedInOrganisationId().Returns(OrganisationId);
-                ApplicationService.GetByOrganisationId(OrganisationId);
+                ApplicationService.GetByOrganisationId();
                 LabelCollectionRetriever.Get("DashboardPage").Returns(_labelsFromCollectionRetriever);
                 _result = DashboardViewModelGetter.Get();
             }

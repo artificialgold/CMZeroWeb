@@ -73,6 +73,13 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
                 var model = (ApplicationViewModel) _result.Model;
                 model.ShouldBe(_resultFromViewModelGetter);
             }
+
+            [Test]
+            public void it_should_viewname()
+            {
+                _result.ViewName.ShouldBe("~/Views/Dashboard/Application/Index.cshtml");
+            }
+
         }
 
         [TestFixture]
@@ -86,6 +93,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
             public new virtual void SetUp()
             {
                 base.SetUp();
+                ApplicationViewModelGetter.Update(ApplicationIdNotPartOfOrganisation, NewName).Returns(x=>{throw new ApplicationIdNotPartOfOrganisationException();});
                 _result = (RedirectToRouteResult)ApplicationController.Update(ApplicationIdNotPartOfOrganisation, NewName);
             }
 
@@ -93,6 +101,37 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
             public void it_should_return_ohbugger_view()
             {
                 _result.RouteName.ShouldBe("OhBugger");
+            }
+        }
+
+        [TestFixture]
+        public class When_I_call_update_with_applicationId_that_is_valid : Given_an_ApplicationController
+        {
+            private ViewResult _result;
+
+            private ApplicationViewModel _modelFromGetter;
+
+            private const string ApplicationId = "applicationId";
+            private const string NewName = "newName";
+
+            [SetUp]
+            public new virtual void SetUp()
+            {
+                base.SetUp();
+                ApplicationViewModelGetter.Update(ApplicationId, NewName).Returns(_modelFromGetter);
+                _result = (ViewResult)ApplicationController.Update(ApplicationId, NewName);
+            }
+
+            [Test]
+            public void it_should_return_viewmodel_from_view_model_getter()
+            {
+                _result.Model.ShouldBe(_modelFromGetter);
+            }
+
+            [Test]
+            public void it_should_return_the_view()
+            {
+                _result.ViewName.ShouldBe("~/Views/Dashboard/Application/Index.cshtml");
             }
         }
     }

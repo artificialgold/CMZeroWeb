@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CMZero.API.Messages;
-using CMZero.API.Messages.Exceptions.Applications;
-using CMZero.Web.Models.Exceptions;
+
 using CMZero.Web.Models.ViewModels;
 using CMZero.Web.Services.Applications;
 using CMZero.Web.Services.Labels;
@@ -26,7 +22,7 @@ namespace CMZero.Web.Services.ViewModelGetters
 
         public ApplicationViewModel Get(string applicationId)
         {
-            var application = GetApplication(applicationId);
+            var application = _applicationService.GetById(applicationId);
 
             var labels = _labelCollectionRetriever.Get("ApplicationPage");
 
@@ -37,19 +33,9 @@ namespace CMZero.Web.Services.ViewModelGetters
                 };
         }
 
-        private Application GetApplication(string applicationId)
+        public ApplicationViewModel Update(string applicationId, string name)
         {
-            string organisationId = _formsAuthenticationService.GetLoggedInOrganisationId();
-            var applicationsForOrganisation = _applicationService.GetByOrganisationId(organisationId).ToArray();
-
-            IEnumerable<Application> applicationsWithId = from a in applicationsForOrganisation
-                                                          where a.Id == applicationId
-                                                          select a;
-            var applicationExistsForOrganisation = applicationsWithId.Any();
-
-            if (!applicationExistsForOrganisation) throw new ApplicationNotPartOfOrganisationException();
-            var application = applicationsWithId.First();
-            return application;
+            throw new NotImplementedException();
         }
     }
 }
