@@ -26,16 +26,7 @@ namespace CMZero.Web.Services.ViewModelGetters
 
         public ApplicationViewModel Get(string applicationId)
         {
-            string organisationId = _formsAuthenticationService.GetLoggedInOrganisationId();
-            var applicationsForOrganisation = _applicationService.GetByOrganisationId(organisationId).ToArray();
-
-            IEnumerable<Application> applicationsWithId = from a in applicationsForOrganisation
-                                       where a.Id == applicationId
-                                       select a;
-            var applicationExistsForOrganisation = applicationsWithId.Any();
-
-            if (!applicationExistsForOrganisation) throw new ApplicationNotPartOfOrganisationException();
-            var application = applicationsWithId.First();
+            var application = GetApplication(applicationId);
 
             var labels = _labelCollectionRetriever.Get("ApplicationPage");
 
@@ -44,6 +35,21 @@ namespace CMZero.Web.Services.ViewModelGetters
                     Application = application,
                     Labels = labels
                 };
+        }
+
+        private Application GetApplication(string applicationId)
+        {
+            string organisationId = _formsAuthenticationService.GetLoggedInOrganisationId();
+            var applicationsForOrganisation = _applicationService.GetByOrganisationId(organisationId).ToArray();
+
+            IEnumerable<Application> applicationsWithId = from a in applicationsForOrganisation
+                                                          where a.Id == applicationId
+                                                          select a;
+            var applicationExistsForOrganisation = applicationsWithId.Any();
+
+            if (!applicationExistsForOrganisation) throw new ApplicationNotPartOfOrganisationException();
+            var application = applicationsWithId.First();
+            return application;
         }
     }
 }

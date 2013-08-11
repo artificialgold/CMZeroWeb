@@ -6,6 +6,5 @@ namespace CMZero.Web.Services.Applications
     public interface IApplicationService
     {
         IEnumerable<Application> GetByOrganisationId(string organisationId);
-        Application GetById(string id);
     }
 }

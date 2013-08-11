@@ -15,7 +15,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
     public class ApplicationControllerTests
     {
 
-        public class Given_a_ApplicationController
+        public class Given_an_ApplicationController
         {
             protected ApplicationController ApplicationController;
             protected IApplicationViewModelGetter ApplicationViewModelGetter;
@@ -30,7 +30,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
         }
 
         [TestFixture]
-        public class When_I_call_index_with_an_invalid_applicationId : Given_a_ApplicationController
+        public class When_I_call_index_with_an_invalid_applicationId : Given_an_ApplicationController
         {
             private RedirectToRouteResult _result;
             private const string ApplicationIdThatDoesNotExist = "xxxxxxxxxxx";
@@ -53,7 +53,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
         }
 
         [TestFixture]
-        public class When_I_call_Index_with_a_valid_applicationId_for_the_organisation : Given_a_ApplicationController
+        public class When_I_call_Index_with_a_valid_applicationId_for_the_organisation : Given_an_ApplicationController
         {
             private const string ExistingApplicationId = "IExist";
             private ViewResult _result;
@@ -72,6 +72,27 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
             {
                 var model = (ApplicationViewModel) _result.Model;
                 model.ShouldBe(_resultFromViewModelGetter);
+            }
+        }
+
+        [TestFixture]
+        public class When_I_call_update_with_applicationId_not_part_of_organisation : Given_an_ApplicationController
+        {
+            private RedirectToRouteResult _result;
+            private const string ApplicationIdNotPartOfOrganisation = "appIdNotPartOfOrgId";
+            private const string NewName = "newName";
+
+            [SetUp]
+            public new virtual void SetUp()
+            {
+                base.SetUp();
+                _result = (RedirectToRouteResult)ApplicationController.Update(ApplicationIdNotPartOfOrganisation, NewName);
+            }
+
+            [Test]
+            public void it_should_return_ohbugger_view()
+            {
+                _result.RouteName.ShouldBe("OhBugger");
             }
         }
     }

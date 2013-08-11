@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using CMZero.API.Messages.Exceptions.Applications;
 using CMZero.Web.Services.Applications;
 using CMZero.Web.Services.ViewModelGetters;
@@ -27,5 +28,12 @@ namespace CMZeroWeb.Controllers.Dashboard
                 return RedirectToRoute("OhBugger");
             }
         }
+
+        public ActionResult Update(string applicationId, string name)
+        {
+
+            throw new NotImplementedException();
+        }
+
     }
 }
