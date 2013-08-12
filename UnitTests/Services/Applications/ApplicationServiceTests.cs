@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CMZero.API.Messages;
-using CMZero.API.Messages.Exceptions.Collections;
+using CMZero.API.Messages.Exceptions.Applications;
 using CMZero.API.ServiceAgent;
 using CMZero.Web.Models.Exceptions;
 using CMZero.Web.Services.Applications;
@@ -128,7 +128,7 @@ namespace CMZero.Web.UnitTests.Services.Applications
                 base.SetUp();
                 FormsAuthenticationService.GetLoggedInOrganisationId().Returns(OrganisationId);
                 ApplicationServiceAgent.GetByOrganisation(OrganisationId)
-                                       .Returns(new List<Application> {new Application {Id = ApplicationId}});
+                                       .Returns(new List<Application> { new Application { Id = ApplicationId } });
                 ApplicationService.GetById(ApplicationId);
             }
         }
@@ -168,9 +168,40 @@ namespace CMZero.Web.UnitTests.Services.Applications
         }
 
         [TestFixture]
+        public class When_I_call_Update_with_valid_parameters : Given_an_ApplicationService
+        {
+            private Application _result;
+
+            private readonly Application _applicationFromServiceAgentForGet = new Application();
+
+            private const string NewName = "newName";
+
+            private const string ApplicationId = "applicationId";
+
+            [SetUp]
+            public new virtual void SetUp()
+            {
+                base.SetUp();
+                ApplicationServiceAgent.Get(ApplicationId).Returns(_applicationFromServiceAgentForGet);
+                _applicationFromServiceAgentForGet.Name = NewName;
+                ApplicationServiceAgent.Post(_applicationFromServiceAgentForGet)
+                                       .Returns(_applicationFromServiceAgentForGet);
+                _result = ApplicationService.Update(ApplicationId, NewName);
+            }
+
+            [Test]
+            public void it_should_return_value_from_service_agent()
+            {
+                _result.ShouldBe(_applicationFromServiceAgentForGet);
+            }
+        }
+
+        [TestFixture]
         public class When_I_call_Update_with_application_name_that_already_exists : Given_an_ApplicationService
         {
             private Application _application;
+
+            private ApplicationNameAlreadyExistsException _exception;
 
             private const string ApplicationId = "applicationId";
 
@@ -182,13 +213,26 @@ namespace CMZero.Web.UnitTests.Services.Applications
                 base.SetUp();
                 const string OrganisationId = "orgId";
                 FormsAuthenticationService.GetLoggedInOrganisationId().Returns(OrganisationId);
-                _application = new Application { Id = ApplicationId };
+                _application = new Application { Id = ApplicationId , OrganisationId = OrganisationId};
                 ApplicationServiceAgent.GetByOrganisation(OrganisationId)
                                        .Returns(new List<Application> { _application });
                 _application.Name = NewNameThatAlreadyExists;
                 ApplicationServiceAgent.Put(_application)
-                                       .Returns(x => { throw new CollectionNameAlreadyExistsException(); });
-                ApplicationService.Update(ApplicationId, NewNameThatAlreadyExists);
+                                       .Returns(x => { throw new ApplicationNameAlreadyExistsException(); });
+                try
+                {
+                    ApplicationService.Update(ApplicationId, NewNameThatAlreadyExists);
+                }
+                catch (ApplicationNameAlreadyExistsException ex)
+                {
+                    _exception = ex;
+                }
+            }
+
+            [Test]
+            public void it_should_return_ApplicationNameAlreadyExistsException()
+            {
+                _exception.ShouldNotBe(null);
             }
         }
     }

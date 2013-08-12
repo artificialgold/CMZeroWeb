@@ -1,7 +1,5 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using CMZero.API.Messages.Exceptions.Applications;
-using CMZero.Web.Services.Applications;
 using CMZero.Web.Services.ViewModelGetters;
 
 namespace CMZeroWeb.Controllers.Dashboard
@@ -21,7 +19,6 @@ namespace CMZeroWeb.Controllers.Dashboard
             {
                 var model = _applicationViewModelGetter.Get(id);
                 return View("~/Views/Dashboard/Application/Index.cshtml", model);
-
             }
             catch (ApplicationIdNotPartOfOrganisationException)
             {

@@ -42,7 +42,7 @@ namespace CMZero.Web.Services.Applications
             return application;
         }
 
-        private static Application[] CheckApplicationExistsForOrganisation(string id, Application[] applicationsForOrganisation)
+        private static IEnumerable<Application> CheckApplicationExistsForOrganisation(string id, IEnumerable<Application> applicationsForOrganisation)
         {
             var applicationsWithId = (from a in applicationsForOrganisation where a.Id == id select a).ToArray();
             var applicationExistsForOrganisation = applicationsWithId.Any();
@@ -56,9 +56,11 @@ namespace CMZero.Web.Services.Applications
 
         public Application Update(string id, string name)
         {
-            GetById(id);
+            var applications = GetByOrganisationId();
+            var application = CheckApplicationExistsForOrganisation(id, applications).First();
+            application.Name = name;
 
-            throw new NotImplementedException();
+            return _applicationServiceAgent.Put(application);
         }
     }
 }

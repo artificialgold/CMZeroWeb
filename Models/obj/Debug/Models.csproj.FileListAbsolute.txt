@@ -1,10 +1,3 @@
-C:\Repositories\CMZeroWeb\Models\bin\Debug\CMZero.Web.Models.dll
-C:\Repositories\CMZeroWeb\Models\bin\Debug\CMZero.Web.Models.pdb
-C:\Repositories\CMZeroWeb\Models\obj\Debug\CMZero.Web.Models.dll
-C:\Repositories\CMZeroWeb\Models\obj\Debug\CMZero.Web.Models.pdb
-C:\Repositories\CMZeroWeb\Models\bin\Debug\CMZero.API.Messages.dll
-C:\Repositories\CMZeroWeb\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
-C:\Repositories\CMZeroWeb\Models\bin\Debug\CMZero.API.Messages.pdb
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\Models\bin\Debug\CMZero.Web.Models.dll
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\Models\bin\Debug\CMZero.Web.Models.pdb
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\Models\bin\Debug\CMZero.API.Messages.dll
@@ -12,3 +5,10 @@ C:\Users\Andrew\Documents\GitHub\CMZeroWeb\Models\bin\Debug\CMZero.API.Messages.
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\Models\obj\Debug\CMZero.Web.Models.dll
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\Models\obj\Debug\CMZero.Web.Models.pdb
 C:\Users\Andrew\Documents\GitHub\CMZeroWeb\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+C:\Repositories\CMZeroWeb\Models\bin\Debug\CMZero.Web.Models.dll
+C:\Repositories\CMZeroWeb\Models\bin\Debug\CMZero.Web.Models.pdb
+C:\Repositories\CMZeroWeb\Models\bin\Debug\CMZero.API.Messages.dll
+C:\Repositories\CMZeroWeb\Models\bin\Debug\CMZero.API.Messages.pdb
+C:\Repositories\CMZeroWeb\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+C:\Repositories\CMZeroWeb\Models\obj\Debug\CMZero.Web.Models.dll
+C:\Repositories\CMZeroWeb\Models\obj\Debug\CMZero.Web.Models.pdb
