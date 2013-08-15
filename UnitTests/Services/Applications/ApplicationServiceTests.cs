@@ -172,7 +172,8 @@ namespace CMZero.Web.UnitTests.Services.Applications
         {
             private Application _result;
 
-            private readonly Application _applicationFromServiceAgentForGet = new Application();
+            private Application _applicationFromServiceAgentForGet;
+            private const string OrganisationId = "organisationId";
 
             private const string NewName = "newName";
 
@@ -182,9 +183,13 @@ namespace CMZero.Web.UnitTests.Services.Applications
             public new virtual void SetUp()
             {
                 base.SetUp();
+                FormsAuthenticationService.GetLoggedInOrganisationId().Returns(OrganisationId);
+                _applicationFromServiceAgentForGet = new Application {Id = ApplicationId};
+                ApplicationServiceAgent.GetByOrganisation(OrganisationId)
+                                       .Returns(new List<Application> {_applicationFromServiceAgentForGet});
                 ApplicationServiceAgent.Get(ApplicationId).Returns(_applicationFromServiceAgentForGet);
                 _applicationFromServiceAgentForGet.Name = NewName;
-                ApplicationServiceAgent.Post(_applicationFromServiceAgentForGet)
+                ApplicationServiceAgent.Put(_applicationFromServiceAgentForGet)
                                        .Returns(_applicationFromServiceAgentForGet);
                 _result = ApplicationService.Update(ApplicationId, NewName);
             }
@@ -211,10 +216,10 @@ namespace CMZero.Web.UnitTests.Services.Applications
             public new virtual void SetUp()
             {
                 base.SetUp();
-                const string OrganisationId = "orgId";
-                FormsAuthenticationService.GetLoggedInOrganisationId().Returns(OrganisationId);
-                _application = new Application { Id = ApplicationId , OrganisationId = OrganisationId};
-                ApplicationServiceAgent.GetByOrganisation(OrganisationId)
+                const string organisationId = "orgId";
+                FormsAuthenticationService.GetLoggedInOrganisationId().Returns(organisationId);
+                _application = new Application { Id = ApplicationId , OrganisationId = organisationId};
+                ApplicationServiceAgent.GetByOrganisation(organisationId)
                                        .Returns(new List<Application> { _application });
                 _application.Name = NewNameThatAlreadyExists;
                 ApplicationServiceAgent.Put(_application)

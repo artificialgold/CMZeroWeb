@@ -1,21 +1,19 @@
 ﻿using System;
-
+using CMZero.API.Messages.Exceptions.Applications;
+using CMZero.Web.Models.Exceptions;
 using CMZero.Web.Models.ViewModels;
 using CMZero.Web.Services.Applications;
 using CMZero.Web.Services.Labels;
-using CMZero.Web.Services.Login;
 
 namespace CMZero.Web.Services.ViewModelGetters
 {
     public class ApplicationViewModelGetter : IApplicationViewModelGetter
     {
-        private readonly IFormsAuthenticationService _formsAuthenticationService;
         private readonly IApplicationService _applicationService;
         private readonly ILabelCollectionRetriever _labelCollectionRetriever;
 
-        public ApplicationViewModelGetter(IFormsAuthenticationService formsAuthenticationService, IApplicationService applicationService, ILabelCollectionRetriever labelCollectionRetriever)
+        public ApplicationViewModelGetter(IApplicationService applicationService, ILabelCollectionRetriever labelCollectionRetriever)
         {
-            _formsAuthenticationService = formsAuthenticationService;
             _applicationService = applicationService;
             _labelCollectionRetriever = labelCollectionRetriever;
         }
@@ -35,7 +33,25 @@ namespace CMZero.Web.Services.ViewModelGetters
 
         public ApplicationViewModel Update(string applicationId, string name)
         {
-            throw new NotImplementedException();
+            var model = new ApplicationViewModel
+                {
+                    Success = true,
+                    SuccessMessage = SuccessMessages.Success
+                };
+
+            try
+            {
+                model.Application = _applicationService.Update(applicationId, name);
+            }
+            catch (ApplicationNameAlreadyExistsException)
+            {
+                model.Application = _applicationService.GetById(applicationId);
+                model.Success = false;
+                model.SuccessMessage = SuccessMessages.ApplicationNameAlreadyExists;
+                return model;
+            }
+
+            return model;
         }
     }
 }

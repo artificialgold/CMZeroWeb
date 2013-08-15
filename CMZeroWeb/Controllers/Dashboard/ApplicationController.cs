@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using CMZero.API.Messages.Exceptions.Applications;
+using CMZero.Web.Models.Exceptions;
 using CMZero.Web.Services.ViewModelGetters;
 
 namespace CMZeroWeb.Controllers.Dashboard
@@ -20,17 +21,17 @@ namespace CMZeroWeb.Controllers.Dashboard
                 var model = _applicationViewModelGetter.Get(id);
                 return View("~/Views/Dashboard/Application/Index.cshtml", model);
             }
-            catch (ApplicationIdNotPartOfOrganisationException)
+            catch (ApplicationNotPartOfOrganisationException)
             {
                 return RedirectToRoute("OhBugger");
             }
         }
 
-        public ActionResult Update(string applicationId, string name)
+        public ActionResult Update(string applicationId, string NameInput)
         {
             try
             {
-                var model = _applicationViewModelGetter.Update(applicationId, name);
+                var model = _applicationViewModelGetter.Update(applicationId, NameInput);
                 return View("~/Views/Dashboard/Application/Index.cshtml", model);
             }
             catch (ApplicationIdNotPartOfOrganisationException)

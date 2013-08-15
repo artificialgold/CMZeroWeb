@@ -56,8 +56,7 @@ namespace CMZero.Web.Services.Applications
 
         public Application Update(string id, string name)
         {
-            var applications = GetByOrganisationId();
-            var application = CheckApplicationExistsForOrganisation(id, applications).First();
+            var application = GetById(id);
             application.Name = name;
 
             return _applicationServiceAgent.Put(application);

@@ -13,21 +13,41 @@
 
 @using (Html.BeginForm("Update", "Application", FormMethod.Post, new { @class = "form-horizontal well" }))
 {
+    <input type="hidden" value="@Model.Application.Id" id="applicationId" name="applicationId"/>
     <legend>@Model.GetLabel("LegendText")</legend>
     <div class="control-group">
-        <label class="control-label" for="NameInput">@Model.GetLabel("OrganisationNameLabel")</label>
+        <label class="control-label" for="NameInput">@Model.GetLabel("NameLabel")</label>
         <div class="controls">
-            <input class="input-xlarge" id="NameInput" name="NameInput" type="text" placeholder="@Model.GetLabel("OrganisationNamePlaceholder")">
+            <input class="input-xlarge" id="NameInput" name="NameInput" type="text" placeholder="@Model.GetLabel("NamePlaceholder")" value="@Model.Application.Name">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="PasswordInput">@Model.GetLabel("PasswordLabel")</label>
+        <label class="control-label" for="ActiveCheckbox">@Model.GetLabel("ActiveLabel")</label>
         <div class="controls">
-            <input class="input-xlarge" id="PasswordInput" name="PasswordInput" type="password"  placeholder="@Model.GetLabel("PasswordPlaceholder")">
+            <input id="ActiveCheckbox" name="ActiveCheckbox" type="checkbox">
             <button type="submit" class="btn" id="SubmitLogin">@Model.GetLabel("SubmitButtonText")</button>
         </div>
     </div>
-    @*<div class="control-group">
+    
+    <div class="control-group">
+        <label class="control-label">@Model.GetLabel("ApiKeyLabel")</label>
+        <div class="controls">
+            @Model.Application.ApiKey
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">@Model.GetLabel("CreatedLabel")</label>
+        <div class="controls">
+            @Model.Application.Created
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">@Model.GetLabel("UpdatedLabel")</label>
+        <div class="controls">
+            @Model.Application.Updated
+        </div>
+    </div>
+@*<div class="control-group">
         <label class="control-label" for="rememberMeCheckBox">@Model.GetLabel("RememberMeText")</label>
         <div class="controls">
             <input type="checkbox" id="rememberMeCheckBox" name="rememberMeCheckBox" value="true">

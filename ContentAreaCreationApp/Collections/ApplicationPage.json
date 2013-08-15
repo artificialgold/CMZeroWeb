@@ -10,5 +10,37 @@
 		{
 			"Name": "ApplicationsTitle",
 			"Content": "Your applications"
-		}
+		},
+		{
+			"Name":"LegendsText",
+			"Content": "Edit your application"
+		},
+		{
+			"Name": "NameLabel",
+			"Content": "Name"	
+		},
+		{
+			"Name": "NamePlaceholder",
+			"Content": "Name"	
+		},
+		{
+			"Name": "ActiveLabel",
+			"Content": "Created"	
+		},
+		{
+			"Name": "CreatedLabel",
+			"Content": "Created"	
+		},
+		{
+			"Name": "ApiKeyLabel",
+			"Content": "Api key"	
+		},
+		{
+			"Name": "UpdatedLabel",
+			"Content": "Last updated"	
+		},
+		{
+			"Name": "SubmitButtonText",
+			"Content": "Update"	
+		},
 ]
