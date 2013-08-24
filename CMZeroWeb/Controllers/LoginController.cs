@@ -35,7 +35,7 @@ namespace CMZeroWeb.Controllers
         {
             var x = (string)RouteData.Values["nameInput"];
 
-            var organisationId = "fa3af0f3-9e5b-4797-98f1-2dde407dd3c7";
+            var organisationId = "2b6f1418-41e4-4817-94e0-1c3abb535de0";
 
             _formsAuthenticationService.SignIn(organisationId, true);
 

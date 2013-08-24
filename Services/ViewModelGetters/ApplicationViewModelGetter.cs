@@ -1,6 +1,6 @@
-﻿using System;
+﻿using CMZero.API.Messages;
 using CMZero.API.Messages.Exceptions.Applications;
-using CMZero.Web.Models.Exceptions;
+using CMZero.Web.Models;
 using CMZero.Web.Models.ViewModels;
 using CMZero.Web.Services.Applications;
 using CMZero.Web.Services.Labels;
@@ -22,22 +22,39 @@ namespace CMZero.Web.Services.ViewModelGetters
         {
             var application = _applicationService.GetById(applicationId);
 
-            var labels = _labelCollectionRetriever.Get("ApplicationPage");
+            var model = new ApplicationViewModel();
 
-            return new ApplicationViewModel
-                {
-                    Application = application,
-                    Labels = labels
-                };
+            return ConstructViewModel(model,application);
+        }
+
+        private ApplicationViewModel ConstructViewModel(ApplicationViewModel model, Application application)
+        {
+            var labels = GetLabelCollection();
+
+            model.Application = application;
+            model.Labels = labels;
+
+            return model;
+        }
+
+        private LabelCollection GetLabelCollection()
+        {
+            return _labelCollectionRetriever.Get("ApplicationPage");
         }
 
         public ApplicationViewModel Update(string applicationId, string name)
         {
+            //Get labels here and build the success message (remove the ConstructViewModel part)
+            var labels = GetLabelCollection();
+
             var model = new ApplicationViewModel
                 {
+                    Labels = labels,
                     Success = true,
-                    SuccessMessage = SuccessMessages.Success
+                    SuccessMessageType = SuccessMessageTypes.Success,
                 };
+
+            model.SuccessMessage = model.GetLabel("UpdateSuccessMessage");
 
             try
             {
@@ -47,11 +64,11 @@ namespace CMZero.Web.Services.ViewModelGetters
             {
                 model.Application = _applicationService.GetById(applicationId);
                 model.Success = false;
-                model.SuccessMessage = SuccessMessages.ApplicationNameAlreadyExists;
-                return model;
+                model.SuccessMessageType = SuccessMessageTypes.ApplicationNameAlreadyExists;
+                model.FailureMessage = model.GetLabel("UpdateFailureMessageApplicationNameExists");
             }
 
-            return model;
+            return ConstructViewModel(model, model.Application);
         }
     }
 }

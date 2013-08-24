@@ -21,17 +21,17 @@ namespace CMZeroWeb.Controllers.Dashboard
                 var model = _applicationViewModelGetter.Get(id);
                 return View("~/Views/Dashboard/Application/Index.cshtml", model);
             }
-            catch (ApplicationNotPartOfOrganisationException)
+            catch (ApplicationIdNotPartOfOrganisationException)
             {
                 return RedirectToRoute("OhBugger");
             }
         }
 
-        public ActionResult Update(string applicationId, string NameInput)
+        public ActionResult Update(string applicationId, string nameInput)
         {
             try
             {
-                var model = _applicationViewModelGetter.Update(applicationId, NameInput);
+                var model = _applicationViewModelGetter.Update(applicationId, nameInput);
                 return View("~/Views/Dashboard/Application/Index.cshtml", model);
             }
             catch (ApplicationIdNotPartOfOrganisationException)

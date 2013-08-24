@@ -43,4 +43,12 @@
 			"Name": "SubmitButtonText",
 			"Content": "Update"	
 		},
+		{
+			"Name": "UpdateSuccessMessage",
+			"Content": "<strong>Success</strong> the application has been updated"
+		},
+		{
+			"Name": "UpdateFailureMessageApplicationNameExists",
+			"Content": "<strong>Error</strong> you already have an application with that name"
+		},
 ]

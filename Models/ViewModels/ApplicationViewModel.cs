@@ -5,11 +5,13 @@ namespace CMZero.Web.Models.ViewModels
     public class ApplicationViewModel : BaseLabelsViewModel
     {
         public bool? Success { get; set; }
-        public SuccessMessages SuccessMessage { get; set; }
+        public SuccessMessageTypes SuccessMessageType { get; set; }
+        public string SuccessMessage { get; set; }
         public Application Application { get; set; }
+        public string FailureMessage { get; set; }
     }
 
-    public enum SuccessMessages
+    public enum SuccessMessageTypes
     {
         Success,
         ApplicationNameAlreadyExists

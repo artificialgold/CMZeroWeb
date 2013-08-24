@@ -7,6 +7,7 @@ namespace CMZero.Web.Services.Login
     {
         public void SignIn(string organisationId, bool createPersistentCookie)
         {
+            SignOut();
             FormsAuthentication.SetAuthCookie(organisationId, true);
         }
 

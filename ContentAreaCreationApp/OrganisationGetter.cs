@@ -11,11 +11,11 @@ namespace ContentAreaCreationApp
 {
     class OrganisationGetter
     {
-        private readonly IOrganisationsServiceAgent OrganisationsServiceAgent;
+        private readonly IOrganisationsServiceAgent _organisationsServiceAgent;
 
         public OrganisationGetter(IOrganisationsServiceAgent organisationsServiceAgent)
         {
-            OrganisationsServiceAgent = organisationsServiceAgent;
+            _organisationsServiceAgent = organisationsServiceAgent;
         }
 
         public Organisation GetOrganisation()
@@ -23,13 +23,13 @@ namespace ContentAreaCreationApp
             Organisation organisation;
             try
             {
-                organisation = OrganisationsServiceAgent.Get(ConfigurationManager.AppSettings["OrganisationIdToTryToUse"]);
+                organisation = _organisationsServiceAgent.Get(ConfigurationManager.AppSettings["OrganisationIdToTryToUse"]);
                 Console.WriteLine("Organisation with that ID does exist");
                 Console.WriteLine();
             }
             catch (Exception)
             {
-                organisation = OrganisationsServiceAgent.Post(new Organisation { Active = true, Name = "CMZero2" });
+                organisation = _organisationsServiceAgent.Post(new Organisation { Active = true, Name = "CMZeroWebsiteLabels" });
                 Console.WriteLine("NEW ORGANISATIONID IS " + organisation.Id);
                 Console.WriteLine();
             }

@@ -7,7 +7,30 @@
 
 <h1>@Model.GetLabel("MainH1")</h1>
 
-@Model.Application.Name
+@{
+    if (@Model.Success.HasValue)
+    {
+        if (@Model.Success.Value)
+        {
+    <div class="alert alert-success">
+        <a class="close">×
+        </a>
+        @Html.Raw(Model.SuccessMessage)
+    </div>
+
+        }
+        else
+        {
+    <div class="alert alert-error">
+        <a class="close">×
+        </a><strong>Error
+        </strong>
+        Change a few things up and try submitting again.
+      
+    </div>
+        }
+    }
+}
 
 
 
@@ -16,9 +39,9 @@
     <input type="hidden" value="@Model.Application.Id" id="applicationId" name="applicationId"/>
     <legend>@Model.GetLabel("LegendText")</legend>
     <div class="control-group">
-        <label class="control-label" for="NameInput">@Model.GetLabel("NameLabel")</label>
+        <label class="control-label" for="nameInput">@Model.GetLabel("NameLabel")</label>
         <div class="controls">
-            <input class="input-xlarge" id="NameInput" name="NameInput" type="text" placeholder="@Model.GetLabel("NamePlaceholder")" value="@Model.Application.Name">
+            <input class="input-xlarge" id="nameInput" name="nameInput" type="text" placeholder="@Model.GetLabel("NamePlaceholder")" value="@Model.Application.Name">
         </div>
     </div>
     <div class="control-group">

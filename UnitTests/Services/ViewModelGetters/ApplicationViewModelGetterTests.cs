@@ -1,4 +1,5 @@
-﻿using CMZero.API.Messages.Exceptions.Applications;
+﻿using System.Collections.Generic;
+using CMZero.API.Messages.Exceptions.Applications;
 using CMZero.Web.Models;
 using CMZero.Web.Models.Exceptions;
 using CMZero.Web.Models.ViewModels;
@@ -128,6 +129,7 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
         {
             private ApplicationViewModel _result;
             private readonly Application _applicationFromGetById = new Application();
+            private const string LabelForFailure="failureMessage";
             private const string ApplicationId = "applicationId";
             private const string NewName = "newName";
 
@@ -135,6 +137,19 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
             public new virtual void SetUp()
             {
                 base.SetUp();
+                LabelCollectionRetriever.Get("ApplicationPage")
+                                        .Returns(new LabelCollection
+                                            {
+                                                ContentAreas =
+                                                    new List<ContentAreaForDisplay>
+                                                        {
+                                                            new ContentAreaForDisplay
+                                                                {
+                                                                    Name = "UpdateFailureMessageApplicationNameExists",
+                                                                    Content = LabelForFailure
+                                                                }
+                                                        }
+                                            });
                 ApplicationService.Update(ApplicationId, NewName)
                                   .Returns(x => { throw new ApplicationNameAlreadyExistsException(); });
                 ApplicationService.GetById(ApplicationId).Returns(_applicationFromGetById);
@@ -150,13 +165,19 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
             [Test]
             public void it_should_return_view_model_with_name_exists_message_type()
             {
-                _result.SuccessMessage.ShouldBe(SuccessMessages.ApplicationNameAlreadyExists);
+                _result.SuccessMessageType.ShouldBe(SuccessMessageTypes.ApplicationNameAlreadyExists);
             }
 
             [Test]
             public void it_should_return_application_from_service_agent()
             {
                 _result.Application.ShouldBe(_applicationFromGetById);
+            }
+
+            [Test]
+            public void it_should_return_view_model_with_message_from_labels()
+            {
+                _result.FailureMessage.ShouldBe(LabelForFailure);
             }
         }
 
@@ -165,6 +186,7 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
         {
             private readonly Application _applicationFromService=new Application();
             private ApplicationViewModel _result;
+            private const string SuccessMessage = "successMessage";
             private const string NewName = "newName";
             private const string ApplicationId = "applicationId";
 
@@ -172,6 +194,20 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
             public new virtual void SetUp()
             {
                 base.SetUp();
+
+                LabelCollectionRetriever.Get("ApplicationPage")
+                                        .Returns(new LabelCollection
+                                            {
+                                                ContentAreas =
+                                                    new List<ContentAreaForDisplay>
+                                                        {
+                                                            new ContentAreaForDisplay
+                                                                {
+                                                                    Name = "UpdateSuccessMessage",
+                                                                    Content = SuccessMessage
+                                                                }
+                                                        }
+                                            });
                 ApplicationService.Update(ApplicationId, NewName).Returns(_applicationFromService);
                 _result = ApplicationViewModelGetter.Update(ApplicationId, NewName);
             }
@@ -191,7 +227,13 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
             [Test]
             public void it_should_return_success_message_success()
             {
-                _result.SuccessMessage.ShouldBe(SuccessMessages.Success);
+                _result.SuccessMessageType.ShouldBe(SuccessMessageTypes.Success);
+            }
+
+            [Test]
+            public void it_should_return_success_message()
+            {
+                _result.SuccessMessage.ShouldBe(SuccessMessage);
             }
         }
     }
