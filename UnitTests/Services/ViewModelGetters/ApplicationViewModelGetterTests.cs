@@ -100,6 +100,7 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
             private ApplicationNotPartOfOrganisationException _exception;
             private const string ApplicationIdNotPartOfOrganisation = "appIdNotPartOfOrg";
             private const string NewName = "name";
+            private const bool Active = true;
 
             [SetUp]
             public new virtual void SetUp()
@@ -107,9 +108,9 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
                 base.SetUp();
                 try
                 {
-                    ApplicationService.Update(ApplicationIdNotPartOfOrganisation, NewName)
+                    ApplicationService.Update(ApplicationIdNotPartOfOrganisation, NewName, Active)
                                       .Returns(x => { throw new ApplicationNotPartOfOrganisationException(); });
-                    ApplicationViewModelGetter.Update(ApplicationIdNotPartOfOrganisation, NewName);
+                    ApplicationViewModelGetter.Update(ApplicationIdNotPartOfOrganisation, NewName, Active);
                 }
                 catch (ApplicationNotPartOfOrganisationException ex)
                 {
@@ -129,8 +130,9 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
         {
             private ApplicationViewModel _result;
             private readonly Application _applicationFromGetById = new Application();
-            private const string LabelForFailure="failureMessage";
+            private const string LabelForFailure = "failureMessage";
             private const string ApplicationId = "applicationId";
+            private const bool Active = true;
             private const string NewName = "newName";
 
             [SetUp]
@@ -150,10 +152,10 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
                                                                 }
                                                         }
                                             });
-                ApplicationService.Update(ApplicationId, NewName)
+                ApplicationService.Update(ApplicationId, NewName, Active)
                                   .Returns(x => { throw new ApplicationNameAlreadyExistsException(); });
                 ApplicationService.GetById(ApplicationId).Returns(_applicationFromGetById);
-                _result = ApplicationViewModelGetter.Update(ApplicationId, NewName);
+                _result = ApplicationViewModelGetter.Update(ApplicationId, NewName, Active);
             }
 
             [Test]
@@ -184,10 +186,11 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
         [TestFixture]
         public class When_I_call_Update_with_valid_parameters : Given_a_ApplicationViewModelGetter
         {
-            private readonly Application _applicationFromService=new Application();
+            private readonly Application _applicationFromService = new Application();
             private ApplicationViewModel _result;
             private const string SuccessMessage = "successMessage";
             private const string NewName = "newName";
+            private const bool Active = true;
             private const string ApplicationId = "applicationId";
 
             [SetUp]
@@ -208,8 +211,8 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
                                                                 }
                                                         }
                                             });
-                ApplicationService.Update(ApplicationId, NewName).Returns(_applicationFromService);
-                _result = ApplicationViewModelGetter.Update(ApplicationId, NewName);
+                ApplicationService.Update(ApplicationId, NewName, Active).Returns(_applicationFromService);
+                _result = ApplicationViewModelGetter.Update(ApplicationId, NewName, Active);
             }
 
             [Test]

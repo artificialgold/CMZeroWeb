@@ -42,7 +42,7 @@ namespace CMZero.Web.Services.ViewModelGetters
             return _labelCollectionRetriever.Get("ApplicationPage");
         }
 
-        public ApplicationViewModel Update(string applicationId, string name)
+        public ApplicationViewModel Update(string applicationId, string name, bool active)
         {
             //Get labels here and build the success message (remove the ConstructViewModel part)
             var labels = GetLabelCollection();
@@ -58,7 +58,7 @@ namespace CMZero.Web.Services.ViewModelGetters
 
             try
             {
-                model.Application = _applicationService.Update(applicationId, name);
+                model.Application = _applicationService.Update(applicationId, name, active);
             }
             catch (ApplicationNameAlreadyExistsException)
             {

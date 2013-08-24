@@ -63,14 +63,14 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
             public new virtual void SetUp()
             {
                 base.SetUp();
-                ApplicationViewModelGetter.Get(ExistingApplicationId).Returns(_resultFromViewModelGetter); 
+                ApplicationViewModelGetter.Get(ExistingApplicationId).Returns(_resultFromViewModelGetter);
                 _result = (ViewResult)ApplicationController.Index(ExistingApplicationId);
             }
 
             [Test]
             public void it_should_return_model_from_view_model_getter()
             {
-                var model = (ApplicationViewModel) _result.Model;
+                var model = (ApplicationViewModel)_result.Model;
                 model.ShouldBe(_resultFromViewModelGetter);
             }
 
@@ -88,13 +88,14 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
             private RedirectToRouteResult _result;
             private const string ApplicationIdNotPartOfOrganisation = "appIdNotPartOfOrgId";
             private const string NewName = "newName";
+            private const bool Active = true;
 
             [SetUp]
             public new virtual void SetUp()
             {
                 base.SetUp();
-                ApplicationViewModelGetter.Update(ApplicationIdNotPartOfOrganisation, NewName).Returns(x=>{throw new ApplicationIdNotPartOfOrganisationException();});
-                _result = (RedirectToRouteResult)ApplicationController.Update(ApplicationIdNotPartOfOrganisation, NewName);
+                ApplicationViewModelGetter.Update(ApplicationIdNotPartOfOrganisation, NewName, Active).Returns(x => { throw new ApplicationIdNotPartOfOrganisationException(); });
+                _result = (RedirectToRouteResult)ApplicationController.Update(ApplicationIdNotPartOfOrganisation, NewName, Active);
             }
 
             [Test]
@@ -109,17 +110,18 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
         {
             private ViewResult _result;
 
-            private ApplicationViewModel _modelFromGetter;
+            private ApplicationViewModel _modelFromGetter = new ApplicationViewModel();
 
             private const string ApplicationId = "applicationId";
             private const string NewName = "newName";
+            private const bool Active = true;
 
             [SetUp]
             public new virtual void SetUp()
             {
                 base.SetUp();
-                ApplicationViewModelGetter.Update(ApplicationId, NewName).Returns(_modelFromGetter);
-                _result = (ViewResult)ApplicationController.Update(ApplicationId, NewName);
+                ApplicationViewModelGetter.Update(ApplicationId, NewName, Active).Returns(_modelFromGetter);
+                _result = (ViewResult)ApplicationController.Update(ApplicationId, NewName, Active);
             }
 
             [Test]

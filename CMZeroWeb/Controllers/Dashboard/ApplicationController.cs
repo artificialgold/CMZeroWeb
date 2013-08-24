@@ -27,11 +27,11 @@ namespace CMZeroWeb.Controllers.Dashboard
             }
         }
 
-        public ActionResult Update(string applicationId, string nameInput)
+        public ActionResult Update(string applicationId, string nameInput, bool activeInput)
         {
             try
             {
-                var model = _applicationViewModelGetter.Update(applicationId, nameInput);
+                var model = _applicationViewModelGetter.Update(applicationId, nameInput, activeInput);
                 return View("~/Views/Dashboard/Application/Index.cshtml", model);
             }
             catch (ApplicationIdNotPartOfOrganisationException)

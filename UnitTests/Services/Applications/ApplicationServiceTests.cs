@@ -152,7 +152,7 @@ namespace CMZero.Web.UnitTests.Services.Applications
                 {
                     FormsAuthenticationService.GetLoggedInOrganisationId().Returns(OrganisationId);
                     ApplicationServiceAgent.GetByOrganisation(OrganisationId).Returns(new List<Application>());
-                    ApplicationService.Update(ApplicationIdNotPartOfLoggedInOrganisation, NewName);
+                    ApplicationService.Update(ApplicationIdNotPartOfLoggedInOrganisation, NewName, true);
                 }
                 catch (ApplicationNotPartOfOrganisationException ex)
                 {
@@ -177,6 +177,7 @@ namespace CMZero.Web.UnitTests.Services.Applications
 
             private const string NewName = "newName";
 
+            private const bool Active = true;
             private const string ApplicationId = "applicationId";
 
             [SetUp]
@@ -184,14 +185,14 @@ namespace CMZero.Web.UnitTests.Services.Applications
             {
                 base.SetUp();
                 FormsAuthenticationService.GetLoggedInOrganisationId().Returns(OrganisationId);
-                _applicationFromServiceAgentForGet = new Application {Id = ApplicationId};
+                _applicationFromServiceAgentForGet = new Application { Id = ApplicationId };
                 ApplicationServiceAgent.GetByOrganisation(OrganisationId)
-                                       .Returns(new List<Application> {_applicationFromServiceAgentForGet});
+                                       .Returns(new List<Application> { _applicationFromServiceAgentForGet });
                 ApplicationServiceAgent.Get(ApplicationId).Returns(_applicationFromServiceAgentForGet);
                 _applicationFromServiceAgentForGet.Name = NewName;
                 ApplicationServiceAgent.Put(_applicationFromServiceAgentForGet)
                                        .Returns(_applicationFromServiceAgentForGet);
-                _result = ApplicationService.Update(ApplicationId, NewName);
+                _result = ApplicationService.Update(ApplicationId, NewName,Active);
             }
 
             [Test]
@@ -207,6 +208,7 @@ namespace CMZero.Web.UnitTests.Services.Applications
             private Application _application;
 
             private ApplicationNameAlreadyExistsException _exception;
+            private const bool Active = true;
 
             private const string ApplicationId = "applicationId";
 
@@ -218,7 +220,7 @@ namespace CMZero.Web.UnitTests.Services.Applications
                 base.SetUp();
                 const string organisationId = "orgId";
                 FormsAuthenticationService.GetLoggedInOrganisationId().Returns(organisationId);
-                _application = new Application { Id = ApplicationId , OrganisationId = organisationId};
+                _application = new Application { Id = ApplicationId, OrganisationId = organisationId };
                 ApplicationServiceAgent.GetByOrganisation(organisationId)
                                        .Returns(new List<Application> { _application });
                 _application.Name = NewNameThatAlreadyExists;
@@ -226,7 +228,7 @@ namespace CMZero.Web.UnitTests.Services.Applications
                                        .Returns(x => { throw new ApplicationNameAlreadyExistsException(); });
                 try
                 {
-                    ApplicationService.Update(ApplicationId, NewNameThatAlreadyExists);
+                    ApplicationService.Update(ApplicationId, NewNameThatAlreadyExists, Active);
                 }
                 catch (ApplicationNameAlreadyExistsException ex)
                 {

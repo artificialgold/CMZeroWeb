@@ -8,6 +8,6 @@ namespace CMZero.Web.Services.Applications
         IEnumerable<Application> GetByOrganisationId();
 
         Application GetById(string id);
-        Application Update(string applicationId, string name);
+        Application Update(string applicationId, string name, bool active);
     }
 }

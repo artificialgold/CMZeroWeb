@@ -53,7 +53,7 @@ namespace CMZero.Web.Services.Applications
             return applicationsWithId;
         }
 
-        public Application Update(string id, string name)
+        public Application Update(string id, string name, bool active)
         {
             var application = GetById(id);
             application.Name = name;

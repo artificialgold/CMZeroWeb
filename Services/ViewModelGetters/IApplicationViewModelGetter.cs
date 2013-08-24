@@ -6,6 +6,6 @@ namespace CMZero.Web.Services.ViewModelGetters
     {
         ApplicationViewModel Get(string applicationId);
 
-        ApplicationViewModel Update(string applicationId, string name);
+        ApplicationViewModel Update(string applicationId, string name, bool active);
     }
 }
