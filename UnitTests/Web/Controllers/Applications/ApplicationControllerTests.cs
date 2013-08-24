@@ -110,7 +110,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
         {
             private ViewResult _result;
 
-            private ApplicationViewModel _modelFromGetter = new ApplicationViewModel();
+            private readonly ApplicationViewModel _modelFromGetter = new ApplicationViewModel();
 
             private const string ApplicationId = "applicationId";
             private const string NewName = "newName";

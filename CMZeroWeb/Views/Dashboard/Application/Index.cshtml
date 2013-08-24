@@ -23,10 +23,7 @@
         {
     <div class="alert alert-error">
         <a class="close">×
-        </a><strong>Error
-        </strong>
-        Change a few things up and try submitting again.
-      
+        </a>@Html.Raw(Model.FailureMessage)
     </div>
         }
     }
@@ -45,9 +42,9 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="ActiveCheckbox">@Model.GetLabel("ActiveLabel")</label>
+        <label class="control-label" for="activeCheckbox">@Model.GetLabel("ActiveLabel")</label>
         <div class="controls">
-            <input id="ActiveCheckbox" name="ActiveCheckbox" type="checkbox">
+            <input id="activeCheckbox" name="activeCheckbox" type="checkbox" checked="@Model.Application.Active">
             <button type="submit" class="btn" id="SubmitLogin">@Model.GetLabel("SubmitButtonText")</button>
         </div>
     </div>
@@ -70,12 +67,4 @@
             @Model.Application.Updated
         </div>
     </div>
-@*<div class="control-group">
-        <label class="control-label" for="rememberMeCheckBox">@Model.GetLabel("RememberMeText")</label>
-        <div class="controls">
-            <input type="checkbox" id="rememberMeCheckBox" name="rememberMeCheckBox" value="true">
-                @Model.GetLabel("RememberMeDescription")
-            
-        </div>
-    </div>*@
 }
