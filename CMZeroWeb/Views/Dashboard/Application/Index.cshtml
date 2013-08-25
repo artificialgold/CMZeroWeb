@@ -42,9 +42,10 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="activeCheckbox">@Model.GetLabel("ActiveLabel")</label>
+        @Html.Label("activeCheckbox", Model.GetLabel("ActiveLabel"), new Dictionary<string, object>{{"class","control-label"}})
+        @*<label class="control-label" for="activeCheckbox">@Model.GetLabel("ActiveLabel")</label>*@
         <div class="controls">
-            <input id="activeCheckbox" name="activeCheckbox" type="checkbox" checked="@Model.Application.Active">
+            @Html.CheckBox("activeCheckbox", Model.Application.Active)
             <button type="submit" class="btn" id="SubmitLogin">@Model.GetLabel("SubmitButtonText")</button>
         </div>
     </div>
