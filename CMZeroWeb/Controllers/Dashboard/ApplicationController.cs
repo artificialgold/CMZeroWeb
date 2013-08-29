@@ -14,6 +14,7 @@ namespace CMZeroWeb.Controllers.Dashboard
             _applicationViewModelGetter = applicationViewModelGetter;
         }
 
+        [HttpGet]
         public ActionResult Index(string id)
         {
             try
@@ -27,7 +28,8 @@ namespace CMZeroWeb.Controllers.Dashboard
             }
         }
 
-        public ActionResult Update(string applicationId, string nameInput, bool? activeCheckbox)
+        [HttpPost]
+        public ActionResult Index(string applicationId, string nameInput, bool? activeCheckbox)
         {
             try
             {

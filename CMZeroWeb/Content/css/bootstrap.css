@@ -1963,7 +1963,14 @@ legend + .control-group {
   float: left;
   width: 160px;
   padding-top: 5px;
-  text-align: right;
+  text-align: left;
+}
+
+.form-horizontal .display-label {
+  width: 400px;
+  padding-top: 5px;
+  text-align: left;
+    margin-left: 180px;
 }
 
 .form-horizontal .controls {

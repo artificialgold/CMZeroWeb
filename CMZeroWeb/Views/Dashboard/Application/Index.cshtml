@@ -31,41 +31,47 @@
 
 
 
-@using (Html.BeginForm("Update", "Application", FormMethod.Post, new { @class = "form-horizontal well" }))
+@using (Html.BeginForm("Index", "Application", FormMethod.Post, new { @class = "form-horizontal well" }))
 {
-    <input type="hidden" value="@Model.Application.Id" id="applicationId" name="applicationId"/>
-    <legend>@Model.GetLabel("LegendText")</legend>
-    <div class="control-group">
-        <label class="control-label" for="nameInput">@Model.GetLabel("NameLabel")</label>
-        <div class="controls">
-            <input class="input-xlarge" id="nameInput" name="nameInput" type="text" placeholder="@Model.GetLabel("NamePlaceholder")" value="@Model.Application.Name">
+    <fieldset>
+        <input type="hidden" value="@Model.Application.Id" id="applicationId" name="applicationId"/>
+        <legend>@Model.GetLabel("LegendText")</legend>
+        <div class="control-group">
+            <label class="control-label" for="nameInput">@Model.GetLabel("NameLabel")</label>
+            <div class="controls">
+                <input class="input-xlarge" id="nameInput" name="nameInput" type="text" placeholder="@Model.GetLabel("NamePlaceholder")" value="@Model.Application.Name">
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        @Html.Label("activeCheckbox", Model.GetLabel("ActiveLabel"), new Dictionary<string, object>{{"class","control-label"}})
-        @*<label class="control-label" for="activeCheckbox">@Model.GetLabel("ActiveLabel")</label>*@
-        <div class="controls">
-            @Html.CheckBox("activeCheckbox", Model.Application.Active)
-            <button type="submit" class="btn" id="SubmitLogin">@Model.GetLabel("SubmitButtonText")</button>
+        <div class="control-group">
+            @Html.Label("activeCheckbox", Model.GetLabel("ActiveLabel"), new Dictionary<string, object> { { "class", "control-label" } })
+            @*<label class="control-label" for="activeCheckbox">@Model.GetLabel("ActiveLabel")</label>*@
+            <div class="controls">
+                @Html.CheckBox("activeCheckbox", Model.Application.Active)
+            </div>
         </div>
-    </div>
-    
-    <div class="control-group">
-        <label class="control-label">@Model.GetLabel("ApiKeyLabel")</label>
-        <div class="controls">
-            @Model.Application.ApiKey
+
+        <div class="control-group">
+            <label class="control-label">@Model.GetLabel("ApiKeyLabel")</label>
+            <div class="display-label">
+                @Model.Application.ApiKey
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">@Model.GetLabel("CreatedLabel")</label>
-        <div class="controls">
-            @Model.Application.Created
+        <div class="control-group">
+            <label class="control-label">@Model.GetLabel("CreatedLabel")</label>
+            <div class="display-label">
+                @Model.Application.Created
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">@Model.GetLabel("UpdatedLabel")</label>
-        <div class="controls">
-            @Model.Application.Updated
+        <div class="control-group">
+            <label class="control-label">@Model.GetLabel("UpdatedLabel")</label>
+            <div class="display-label">
+                @Model.Application.Updated
+            </div>
         </div>
-    </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="SubmitLogin">@Model.GetLabel("SubmitButtonText")</button>
+            <button type="reset" class="btn">Cancel</button>
+        </div>
+    </fieldset>
 }

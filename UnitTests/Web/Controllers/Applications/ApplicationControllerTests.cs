@@ -83,7 +83,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
         }
 
         [TestFixture]
-        public class When_I_call_update_with_applicationId_not_part_of_organisation : Given_an_ApplicationController
+        public class When_I_update_with_applicationId_not_part_of_organisation : Given_an_ApplicationController
         {
             private RedirectToRouteResult _result;
             private const string ApplicationIdNotPartOfOrganisation = "appIdNotPartOfOrgId";
@@ -95,7 +95,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
             {
                 base.SetUp();
                 ApplicationViewModelGetter.Update(ApplicationIdNotPartOfOrganisation, NewName, Active).Returns(x => { throw new ApplicationIdNotPartOfOrganisationException(); });
-                _result = (RedirectToRouteResult)ApplicationController.Update(ApplicationIdNotPartOfOrganisation, NewName, Active);
+                _result = (RedirectToRouteResult)ApplicationController.Index(ApplicationIdNotPartOfOrganisation, NewName, Active);
             }
 
             [Test]
@@ -106,7 +106,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
         }
 
         [TestFixture]
-        public class When_I_call_update_with_applicationId_that_is_valid : Given_an_ApplicationController
+        public class When_I_update_with_applicationId_that_is_valid : Given_an_ApplicationController
         {
             private ViewResult _result;
 
@@ -121,7 +121,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
             {
                 base.SetUp();
                 ApplicationViewModelGetter.Update(ApplicationId, NewName, Active).Returns(_modelFromGetter);
-                _result = (ViewResult)ApplicationController.Update(ApplicationId, NewName, Active);
+                _result = (ViewResult)ApplicationController.Index(ApplicationId, NewName, Active);
             }
 
             [Test]
