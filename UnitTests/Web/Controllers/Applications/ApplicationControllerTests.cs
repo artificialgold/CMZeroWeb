@@ -1,9 +1,6 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using CMZero.API.Messages.Exceptions.Applications;
-using CMZero.Web.Models.Exceptions;
 using CMZero.Web.Models.ViewModels;
-using CMZero.Web.Services.Applications;
 using CMZero.Web.Services.ViewModelGetters;
 using CMZeroWeb.Controllers.Dashboard;
 using NSubstitute;
@@ -14,7 +11,6 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
 {
     public class ApplicationControllerTests
     {
-
         public class Given_an_ApplicationController
         {
             protected ApplicationController ApplicationController;

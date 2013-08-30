@@ -60,6 +60,8 @@
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Login\FormsAuthenticationService.cs" />
     <Compile Include="Login\IFormsAuthenticationService.cs" />
+    <Compile Include="Organisations\IOrganisationService.cs" />
+    <Compile Include="Organisations\OrganisationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemSettings.cs" />
     <Compile Include="ViewModelGetters\ApplicationViewModelGetter.cs" />

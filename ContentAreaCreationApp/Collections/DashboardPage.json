@@ -8,6 +8,10 @@
 			"Content": "Your dashboard :: CMZero - Small chunk content management system"
 		},
 		{
+			"Name": "OrganisationInformationLabel",
+			"Content": "Here is the information for your organisation"
+		},
+		{
 			"Name": "ApplicationsTitle",
 			"Content": "Your applications"
 		}

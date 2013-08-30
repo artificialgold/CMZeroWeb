@@ -58,8 +58,6 @@ namespace CMZero.Web.Services.ViewModelGetters
 
             try
             {
-                //TODO: this is here to test the failure message. Getting a ItemNotFoundException
-                throw new ApplicationNameAlreadyExistsException();
                 model.Application = _applicationService.Update(applicationId, name, active);
             }
             catch (ApplicationNameAlreadyExistsException)

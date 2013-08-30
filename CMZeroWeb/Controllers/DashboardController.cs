@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using CMZero.API.Messages.Exceptions.Organisations;
 using CMZero.API.ServiceAgent;
 using CMZero.Web.Models.ViewModels;
 using CMZero.Web.Services.Labels;
@@ -19,11 +20,18 @@ namespace CMZeroWeb.Controllers
             _labelCollectionRetriever = labelCollectionRetriever;
         }
 
-        public ViewResult Index()
+        public ActionResult Index()
         {
-            var model = _dashboardViewModelGetter.Get();
+            try
+            {
+                var model = _dashboardViewModelGetter.Get();
 
-            return View("Index", model);
+                return View("Index", model);
+            }
+            catch (OrganisationIdNotValidException)
+            {
+                return RedirectToRoute("OhBugger");
+            }
         }
 
         public ViewResult Error()

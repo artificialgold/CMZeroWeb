@@ -6,6 +6,7 @@ using CMZero.Web.Services.Labels;
 using CMZero.Web.Services.Labels.Mappers;
 using CMZero.Web.Services.Logging;
 using CMZero.Web.Services.Login;
+using CMZero.Web.Services.Organisations;
 using CMZero.Web.Services.ViewModelGetters;
 using CMZeroWeb.Controllers.Dashboard;
 using Castle.MicroKernel.Registration;
@@ -47,7 +48,8 @@ namespace CMZeroWeb.Controllers
                 Component.For<IDashboardViewModelGetter>().ImplementedBy<DashboardViewModelGetter>().LifeStyle.Transient);
             container.Register(Component.For<IApplicationService>().ImplementedBy<ApplicationService>().LifeStyle.Transient);
             container.Register(Component.For<IApplicationViewModelGetter>().ImplementedBy<ApplicationViewModelGetter>().LifeStyle.Transient);
-            
+            container.Register(
+                Component.For<IOrganisationService>().ImplementedBy<OrganisationService>().LifeStyle.Transient);
 
             container.Register(
                 Component.For<IContentAreasServiceAgent>().ImplementedBy<ContentAreasServiceAgent>()
@@ -55,6 +57,10 @@ namespace CMZeroWeb.Controllers
             container.Register(
                             Component.For<IApplicationsServiceAgent>().ImplementedBy<ApplicationsServiceAgent>()
                             .DependsOn(Property.ForKey("baseUri").Eq(ConfigurationManager.AppSettings["BaseUri"])).LifestyleTransient());
+            container.Register(Component.For<IOrganisationsServiceAgent>().ImplementedBy<OrganisationsServiceAgent>()
+                            .DependsOn(Property.ForKey("baseUri").Eq(ConfigurationManager.AppSettings["BaseUri"])).LifeStyle.Transient);
+            
+            
 
         }
     }
