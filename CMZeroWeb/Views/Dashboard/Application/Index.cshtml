@@ -73,5 +73,28 @@
             <button type="submit" class="btn btn-primary" id="SubmitLogin">@Model.GetLabel("SubmitButtonText")</button>
             <button type="reset" class="btn">Cancel</button>
         </div>
+
     </fieldset>
-}
+    }
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>@Model.GetLabel("CollectionsTableNameColumnHeader")</th>
+                <th>@Model.GetLabel("CollectionsTableActiveColumnHeader")</th>
+                <th>@Model.GetLabel("CollectionsTableLastUpdatedColumnHeader")</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var collection in Model.Collections)
+            {
+            <tr>
+                <td>@collection.Name</td>
+                <td>@collection.Active</td>
+                <td>@collection.Updated</td>
+                <td><a href="/Dashboard/Collection/@collection.Id">edit</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+

@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="Applications\ApplicationService.cs" />
     <Compile Include="Applications\IApplicationService.cs" />
+    <Compile Include="Collections\CollectionService.cs" />
+    <Compile Include="Collections\ICollectionService.cs" />
     <Compile Include="ISystemSettings.cs" />
     <Compile Include="Labels\ILabelCollectionRetriever.cs" />
     <Compile Include="Labels\LabelCollectionRetriever.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="ViewModelGetters\ApplicationViewModelGetter.cs" />
     <Compile Include="ViewModelGetters\DashboardViewModelGetter.cs" />
     <Compile Include="ViewModelGetters\IApplicationViewModelGetter.cs" />
+    <Compile Include="ViewModelGetters\ICollectionViewModelGetter.cs" />
     <Compile Include="ViewModelGetters\IDashboardViewModelGetter.cs" />
   </ItemGroup>
   <ItemGroup>

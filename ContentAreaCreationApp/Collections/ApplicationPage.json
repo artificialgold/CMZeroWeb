@@ -51,4 +51,16 @@
 			"Name": "UpdateFailureMessageApplicationNameExists",
 			"Content": "<strong>Error</strong> you already have an application with that name"
 		},
+		{
+			"Name": "CollectionsTableNameColumnHeader",
+			"Content": "Name"
+		},
+		{
+			"Name": "CollectionsTableActiveColumnHeader",
+			"Content": "Active"
+		},
+		{
+			"Name": "CollectionsTableLastUpdatedColumnHeader",
+			"Content": "Last updated"
+		},
 ]

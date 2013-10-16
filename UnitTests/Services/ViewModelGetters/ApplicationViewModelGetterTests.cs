@@ -4,6 +4,7 @@ using CMZero.Web.Models;
 using CMZero.Web.Models.Exceptions;
 using CMZero.Web.Models.ViewModels;
 using CMZero.Web.Services.Applications;
+using CMZero.Web.Services.Collections;
 using CMZero.Web.Services.Labels;
 using CMZero.Web.Services.Login;
 using CMZero.Web.Services.ViewModelGetters;
@@ -20,16 +21,16 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
         {
             protected ApplicationViewModelGetter ApplicationViewModelGetter;
             protected IApplicationService ApplicationService;
-            protected IFormsAuthenticationService FormsAuthenticationService;
             protected ILabelCollectionRetriever LabelCollectionRetriever;
+            protected ICollectionService CollectionService;
 
             [SetUp]
             public virtual void SetUp()
             {
                 ApplicationService = Substitute.For<IApplicationService>();
-                FormsAuthenticationService = Substitute.For<IFormsAuthenticationService>();
                 LabelCollectionRetriever = Substitute.For<ILabelCollectionRetriever>();
-                ApplicationViewModelGetter = new ApplicationViewModelGetter(ApplicationService, LabelCollectionRetriever);
+                CollectionService = Substitute.For<ICollectionService>();
+                ApplicationViewModelGetter = new ApplicationViewModelGetter(ApplicationService, LabelCollectionRetriever, CollectionService);
             }
         }
 
@@ -67,7 +68,8 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
         {
             private ApplicationViewModel _result;
             private Application _applicationFromService;
-            private LabelCollection _labelsFromRetreiever = new LabelCollection();
+            private readonly LabelCollection _labelsFromRetreiever = new LabelCollection();
+            private IEnumerable<Collection> _collectionsFromService = new List<Collection>{new Collection()};
             private const string ValidApplicationId = "iExist";
 
             [SetUp]
@@ -76,6 +78,7 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
                 base.SetUp();
                 LabelCollectionRetriever.Get("ApplicationPage").Returns(_labelsFromRetreiever);
                 _applicationFromService = new Application { Id = ValidApplicationId };
+                CollectionService.GetByApplication(ValidApplicationId).Returns(_collectionsFromService);
                 ApplicationService.GetById(ValidApplicationId)
                                   .Returns(_applicationFromService);
                 _result = ApplicationViewModelGetter.Get(ValidApplicationId);
@@ -91,6 +94,12 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
             public void it_should_return_labels_from_retriever()
             {
                 _result.Labels.ShouldBe(_labelsFromRetreiever);
+            }
+
+            [Test]
+            public void it_should_return_collections_for_the_application()
+            {
+                _result.Collections.ShouldBe(_collectionsFromService);
             }
         }
 
@@ -188,6 +197,7 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
         {
             private readonly Application _applicationFromService = new Application();
             private ApplicationViewModel _result;
+            private IEnumerable<Collection> _collectionsFromService = new List<Collection>{new Collection()};
             private const string SuccessMessage = "successMessage";
             private const string NewName = "newName";
             private const bool Active = true;
@@ -198,6 +208,7 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
             {
                 base.SetUp();
 
+                CollectionService.GetByApplication(ApplicationId).Returns(_collectionsFromService);
                 LabelCollectionRetriever.Get("ApplicationPage")
                                         .Returns(new LabelCollection
                                             {
@@ -237,6 +248,12 @@ namespace CMZero.Web.UnitTests.Services.ViewModelGetters
             public void it_should_return_success_message()
             {
                 _result.SuccessMessage.ShouldBe(SuccessMessage);
+            }
+
+            [Test]
+            public void it_should_return_collections_from_collection_service()
+            {
+                _result.Collections.ShouldBe(_collectionsFromService);
             }
         }
     }

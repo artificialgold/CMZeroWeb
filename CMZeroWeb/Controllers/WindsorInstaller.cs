@@ -2,6 +2,7 @@
 using CMZero.API.ServiceAgent;
 using CMZero.Web.Services;
 using CMZero.Web.Services.Applications;
+using CMZero.Web.Services.Collections;
 using CMZero.Web.Services.Labels;
 using CMZero.Web.Services.Labels.Mappers;
 using CMZero.Web.Services.Logging;
@@ -50,6 +51,7 @@ namespace CMZeroWeb.Controllers
             container.Register(Component.For<IApplicationViewModelGetter>().ImplementedBy<ApplicationViewModelGetter>().LifeStyle.Transient);
             container.Register(
                 Component.For<IOrganisationService>().ImplementedBy<OrganisationService>().LifeStyle.Transient);
+            container.Register(Component.For<ICollectionService>().ImplementedBy<CollectionService>().LifeStyle.Transient);
 
             container.Register(
                 Component.For<IContentAreasServiceAgent>().ImplementedBy<ContentAreasServiceAgent>()
@@ -59,6 +61,8 @@ namespace CMZeroWeb.Controllers
                             .DependsOn(Property.ForKey("baseUri").Eq(ConfigurationManager.AppSettings["BaseUri"])).LifestyleTransient());
             container.Register(Component.For<IOrganisationsServiceAgent>().ImplementedBy<OrganisationsServiceAgent>()
                             .DependsOn(Property.ForKey("baseUri").Eq(ConfigurationManager.AppSettings["BaseUri"])).LifeStyle.Transient);
+            container.Register(Component.For<ICollectionServiceAgent>().ImplementedBy<CollectionsServiceAgent>().DependsOn(Property.ForKey("baseUri").Eq(ConfigurationManager.AppSettings["BaseUri"])).LifestyleTransient());
+            
             
             
 

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using CMZero.API.Messages.Exceptions.Organisations;
-using CMZero.API.ServiceAgent;
 using CMZero.Web.Models.ViewModels;
 using CMZero.Web.Services.Labels;
-using CMZero.Web.Services.Login;
 using CMZero.Web.Services.ViewModelGetters;
 
 namespace CMZeroWeb.Controllers
@@ -20,6 +17,7 @@ namespace CMZeroWeb.Controllers
             _labelCollectionRetriever = labelCollectionRetriever;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             try
@@ -36,8 +34,10 @@ namespace CMZeroWeb.Controllers
 
         public ViewResult Error()
         {
-            var model = new DashboardErrorViewModel();
-            model.Labels = _labelCollectionRetriever.Get("DashboardErrorPage");
+            var model = new DashboardErrorViewModel
+            {
+                Labels = _labelCollectionRetriever.Get("DashboardErrorPage")
+            };
 
             return View("Error", model);
         }

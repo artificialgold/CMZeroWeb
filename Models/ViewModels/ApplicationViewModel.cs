@@ -1,4 +1,5 @@
-﻿using CMZero.API.Messages;
+﻿using System.Collections.Generic;
+using CMZero.API.Messages;
 
 namespace CMZero.Web.Models.ViewModels
 {
@@ -9,6 +10,7 @@ namespace CMZero.Web.Models.ViewModels
         public string SuccessMessage { get; set; }
         public Application Application { get; set; }
         public string FailureMessage { get; set; }
+        public IEnumerable<Collection> Collections { get; set; }
     }
 
     public enum SuccessMessageTypes

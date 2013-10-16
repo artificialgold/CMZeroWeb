@@ -85,6 +85,7 @@
     <Compile Include="Labels\BaseLabelsViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Applications\ApplicationServiceTests.cs" />
+    <Compile Include="Services\Collections\CollectionServiceTests.cs" />
     <Compile Include="Services\Labels\LabelCollectionRetrieverTests.cs" />
     <Compile Include="Services\Labels\Mappers\ContentAreaMapperTests.cs" />
     <Compile Include="Services\Labels\Mappers\LabelCollectionMapperTests.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Services\ViewModelGetters\ApplicationViewModelGetterTests.cs" />
     <Compile Include="Services\ViewModelGetters\DashboardViewModelGetterTests.cs" />
     <Compile Include="Web\Controllers\Applications\ApplicationControllerTests.cs" />
+    <Compile Include="Web\Controllers\Applications\CollectionControllerTests.cs" />
     <Compile Include="Web\Controllers\DashboardControllerTests.cs" />
     <Compile Include="Web\Controllers\HomeControllerTests.cs" />
   </ItemGroup>

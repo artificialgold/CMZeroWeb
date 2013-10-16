@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using CMZero.API.Messages.Exceptions.Applications;
-using CMZero.Web.Models.Exceptions;
 using CMZero.Web.Services.ViewModelGetters;
 
 namespace CMZeroWeb.Controllers.Dashboard
