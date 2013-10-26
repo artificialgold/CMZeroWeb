@@ -21,7 +21,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
             public virtual void SetUp()
             {
                 CollectionViewModelGetter = NSubstitute.Substitute.For<ICollectionViewModelGetter>();
-                CollectionController = new CollectionController();
+                CollectionController = new CollectionController(CollectionViewModelGetter);
             }
         }
 
@@ -31,13 +31,14 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
             private ViewResult _result;
             private const string CollectionIdThatDoesExist = "iExist";
             private readonly CollectionViewModel _collectionViewModel = new CollectionViewModel();
+            private const string CollectionId = "collectionId";
 
             [SetUp]
             public new virtual void SetUp()
             {
                 base.SetUp();
                 CollectionViewModelGetter.Get(CollectionIdThatDoesExist).Returns(_collectionViewModel);
-                _result = (ViewResult) CollectionController.Index();
+                _result = (ViewResult) CollectionController.Index(CollectionId);
             }
 
             [Test]
@@ -58,6 +59,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
         public class When_I_call_index_with_invalid_application_id : Given_a_CollectionController
         {
             private RedirectToRouteResult _result;
+            private string CollectionId="collectionId";
             private const string InvalidCollectionId = "iDoNotExist";
 
             [SetUp]
@@ -66,7 +68,7 @@ namespace CMZero.Web.UnitTests.Web.Controllers.Applications
                 base.SetUp();
                 CollectionViewModelGetter.Get(InvalidCollectionId).Returns(x =>
                     { throw new CollectionIdNotValidException(); });
-                _result = (RedirectToRouteResult) CollectionController.Index();
+                _result = (RedirectToRouteResult) CollectionController.Index(CollectionId);
             }
 
             [Test]
